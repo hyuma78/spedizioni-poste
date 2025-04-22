@@ -17,4 +17,4 @@ Ideale per e-commerce, privati o piccole attività.
 2. Inserisci il peso del pacco.
 3. Clicca "Calcola" per ottenere il costo!
 
-**Demo live:** 🔗 [https://hyuma78.github.io/calcolatore-spedizioni/](https://hyuma78.github.io/calcolatore-spedizioni/)
+**Demo live:** 🔗 [https://hyuma78.github.io/spedizioni-poste/](https://hyuma78.github.io/spedizioni-poste)
