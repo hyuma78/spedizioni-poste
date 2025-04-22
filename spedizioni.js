@@ -1,3 +1,5 @@
+// Prezzi aggiornati ad Aprile 2025
+
 const mappaturaNazioni = {
   // Per Pacco Ordinario Internazionale (12 zone)
   ordinario_internazionale: {
