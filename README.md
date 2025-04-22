@@ -14,7 +14,8 @@ Ideale per e-commerce, privati o piccole attività.
 
 ### Come usare
 1. Seleziona **Italia** o **Estero** dal menu a tendina.
-2. Inserisci il peso del pacco.
-3. Clicca "Calcola" per ottenere il costo!
+2. Seleziona il tipo di spedizione.
+3. Inserisci il peso del pacco. 
+4. Clicca "Calcola" per ottenere il costo!
 
 **Demo live:** 🔗 [https://hyuma78.github.io/spedizioni-poste/](https://hyuma78.github.io/spedizioni-poste)
