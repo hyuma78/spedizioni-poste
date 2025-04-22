@@ -1,10 +1,10 @@
-# Calcolo del costo delle spedizioni dall'Italia all'Estero🇮🇹🌍
+# Calcolo del costo delle spedizioni dall'Italia all'Estero
 
 Un progetto web leggero (HTML + JavaScript) che permette agli utenti di stimare i costi di
 spedizione in base alla destinazione e al peso del pacco.
 Ideale per e-commerce, privati o piccole attività.
 
-### Funzionalità principali
+## Funzionalità principali
 
 - ✅ Scelta tra **Italia** o **Estero** come destinazione.
 - ✅ Inserimento del **peso** del pacco (in kg).
