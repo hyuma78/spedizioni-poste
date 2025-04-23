@@ -834,9 +834,6 @@ function creaServizio(nome, prezzo) {
   const tags = [];
   const lower = nome.toLowerCase();
 
-  const isPosta1 = (
-    lower.includes("posta1"));
-
   const isPieghiNonTracciabile = (
     lower.includes("pieghi di libri") &&
     lower.includes("non tracciabile")
@@ -852,7 +849,7 @@ function creaServizio(nome, prezzo) {
   const isPacco = lower.includes("pacco ordinario");
 
   // 💰 Economica
-  if (isPieghiNonTracciabile || isPosta1) {
+  if (isPieghiNonTracciabile) {
     tags.push("💰 Economica");
   }
 
