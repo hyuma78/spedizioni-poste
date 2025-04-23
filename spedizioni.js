@@ -512,8 +512,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inizializza gli elementi corretti
   const destinazioneSelect = document.getElementById('destinazione');
   const tipoDestinazioneSelect = document.getElementById('tipoDestinazione');
-  
-  if (!destinazioneSelect || !tipoDestinazioneSelect) {
+  const contenutoDiv = document.getElementById('contenutoWrapper');
+
+
+   if (!destinazioneSelect || !tipoDestinazioneSelect || !contenutoDiv) {
     console.error('Elementi mancanti nel DOM');
     return;
   }
@@ -521,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Inizializza l'UI
   destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
   document.getElementById('sezioneEstero').classList.add('hidden');
+  contenutoDiv.classList.remove('hidden'); // Mostralo di default per Italia
 
   // Aggiungi gli event listeners corretti
   tipoDestinazioneSelect.addEventListener('change', gestisciDestinazione);
