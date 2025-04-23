@@ -873,4 +873,3 @@ function creaServizio(nome, prezzo) {
     </div>`;
 }
 
-
