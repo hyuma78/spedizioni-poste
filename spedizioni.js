@@ -683,13 +683,21 @@ function calcolaSpedizione() {
 
   // Classifica le opzioni
 // Trova la "scelta consigliata" tra le opzioni più affidabili
+
 const affidabili = risultati.filter(r => {
   const nome = r.nome.toLowerCase();
-  const isTracciabile = nome.includes('tracciabile') && !nome.includes('non tracciabile');
+
+  const isPieghiTracciabile = (
+    nome.includes('pieghi di libri') &&
+    (nome.includes('tracciabile') || nome.includes('avviso'))
+  );
+
   const isRaccomandata = nome.includes('raccomandata');
-  const hasAvviso = nome.includes('avviso');
-  return isTracciabile || isRaccomandata || hasAvviso;
+  const isPacco = nome.includes('pacco ordinario');
+
+  return isPieghiTracciabile || isRaccomandata || isPacco;
 });
+
 
 const migliore = affidabili.length > 0
   ? affidabili.reduce((a, b) => a.prezzo < b.prezzo ? a : b)
