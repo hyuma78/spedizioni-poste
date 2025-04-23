@@ -7,7 +7,7 @@ Ideale per e-commerce, privati o piccole attività.
 ## Funzionalità principali
 
 - ✅ Scelta tra **Italia** o **Estero** come destinazione.
-- ✅ Inserimento del **peso** del pacco (in kg).
+- ✅ Inserimento del **peso** del pacco (in grammi).
 - ✅ Scegliere il tipo di merce da spedire.
 - ✅ Calcolo istantaneo del costo totale.
 - ✅ Interfaccia pulita e responsive.
