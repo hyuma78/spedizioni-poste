@@ -532,27 +532,25 @@ function gestisciDestinazione() {
   const tipo = this.value;
   const sezioneEstero = document.getElementById('sezioneEstero');
   const destinazioneSelect = document.getElementById('destinazione');
-  const infoDiv = document.getElementById('infoNazioni'); // ← nuovo
-  const elencoDiv = document.getElementById('elencoNazioni'); // ← nuovo
+  const infoDiv = document.getElementById('infoNazioni');
+  const elencoDiv = document.getElementById('elencoNazioni');
+  const contenutoDiv = document.getElementById('contenutoWrapper');
 
-  if (!destinazioneSelect) {
-    console.error('Elemento "destinazione" non trovato');
-    return;
-  }
-
-  // 🔁 Reset visuale della sezione info
+  // Reset box nazioni
   infoDiv.classList.add('hidden');
   elencoDiv.innerHTML = '';
 
   if (tipo === 'italia') {
     sezioneEstero.classList.add('hidden');
     destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
-     
+    contenutoDiv.classList.remove('hidden'); // Mostra tipo contenuto
   } else {
     sezioneEstero.classList.remove('hidden');
     caricaZoneEstero();
+    contenutoDiv.classList.add('hidden'); // Nasconde tipo contenuto
   }
 }
+
 
 function caricaZoneEstero() {
   const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
