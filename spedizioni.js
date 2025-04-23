@@ -103,229 +103,229 @@ const mappaturaNazioni = {
       ]
     },
 
-  z4: {
-    nome: "Zona 4",
-    nazioni: [
-      "Angola*",
-      "Azerbaidjan*",
-      "Bahamas",
-      "Bermuda",
-      "Botswana",
-      "Burundi",
-      "Cambogia*",
-      "Canada",
-      "Corea Del Nord",
-      "Repubblica Dominicana",
-      "El Salvador",
-      "Eritrea",
-      "Etiopia",
-      "Gabon",
-      "Giamaica",
-      "Groenlandia",
-      "Guinea Bissau",
-      "Iran",
-      "Israele",
-      "Laos*",
-      "Lesotho*",
-      "Liberia",
-      "Macedonia del Nord",
-      "Malawi*",
-      "Maldive*",
-      "Malesia",
-      "Mali*",
-      "Mauritius",
-      "Messico",
-      "Moldavia*",
-      "Montenegro*",
-      "Namibia",
-      "Nepal",
-      "Nigeria",
-      "Pakistan",
-      "Qatar",
-      "Repubblica Del Congo",
-      "Reunion (Isole)",
-      "Sao Tomè e Principe",
-      "Sierra Leone",
-      "Singapore",
-      "Sud Africa",
-      "Sud Sudan",
-      "Taiwan",
-      "Togo",
-      "Trinidad e Tobago",
-      "Vietnam*",
-    ]
-  },
+    z4: {
+      nome: "Zona 4",
+      nazioni: [
+        "Angola*",
+        "Azerbaidjan*",
+        "Bahamas",
+        "Bermuda",
+        "Botswana",
+        "Burundi",
+        "Cambogia*",
+        "Canada",
+        "Corea Del Nord",
+        "Repubblica Dominicana",
+        "El Salvador",
+        "Eritrea",
+        "Etiopia",
+        "Gabon",
+        "Giamaica",
+        "Groenlandia",
+        "Guinea Bissau",
+        "Iran",
+        "Israele",
+        "Laos*",
+        "Lesotho*",
+        "Liberia",
+        "Macedonia del Nord",
+        "Malawi*",
+        "Maldive*",
+        "Malesia",
+        "Mali*",
+        "Mauritius",
+        "Messico",
+        "Moldavia*",
+        "Montenegro*",
+        "Namibia",
+        "Nepal",
+        "Nigeria",
+        "Pakistan",
+        "Qatar",
+        "Repubblica Del Congo",
+        "Reunion (Isole)",
+        "Sao Tomè e Principe",
+        "Sierra Leone",
+        "Singapore",
+        "Sud Africa",
+        "Sud Sudan",
+        "Taiwan",
+        "Togo",
+        "Trinidad e Tobago",
+        "Vietnam*",
+      ]
+    },
 
-   z5: {
-    nome: "Zona 5",
-    nazioni: [
-      "Afghanistan*",
-      "Anguilla",
-      "Antigua e Barbuda",
-      "Benin",
-      "Burkina Faso*",
-      "Costa Rica",
-      "Dominica*",
-      "Gambia*",
-      "Grenada",
-      "Guatemala*",
-      "Guinea Equatoriale",
-      "Guyana",
-      "Madagascar",
-      "Montserrat",
-      "Saint Kitts And Nevis (Saint Christopher)",
-      "Saint Lucia",
-      "Saint Vincent (e Granadines)",
-      "Seychelles",
-      "Tagikistan",
-      "Turk And Caicos IS.",
-      "Vergini (Isole) - Br.",
-      "Zambia",
-      "Zimbabwe",
-    ]
-  },
-
-
-  z6: {
-    nome: "Zona 6",
-    nazioni: [
-      "Antille Olandesi (Bonarie/Curacao/Saint Maarten)",
-      "Aruba",
-      "Australia",
-      "Barbados",
-      "Belize",
-      "Bolivia",
-      "Cayman Islands",
-      "Ciad",
-      "Cook (Isole)",
-      "Falkland (Isole)",
-      "Fidji (Isole)",
-      "Guadalupa",
-      "Guyana (Francese)",
-      "Haiti*",
-      "Kiribati",
-      "Mayotte",
-      "Martinica",
-      "Mongolia*",
-      "Nauru",
-      "Nicaragua",
-      "Niger",
-      "Nuova Caledonia",
-      "Nuova Zelanda",
-      "Papua Nuova Guinea",
-      "Paraguay",
-      "Pitcairn",
-      "Polinesia (Francese)",
-      "Saint Pierre e Miquelon",
-      "Salomon (Isole)",
-      "Samoa (Western)",
-      "Suriname",
-      "Timor Orientale (Est)",
-      "Tonga (Isole)",
-      "Tuvalu",
-      "Uruguay",
-      "Vanuatu",
-      "Wallis e Futuna (Isole)",
-    ]
-  },
-
-  z7: {
-    nome: "Zona 7",
-    nazioni: [
-      "Bielorussia*",
-      "Cina",
-    ]
-  },
-
-  z8: {
-    nome: "Zona 8",
-    nazioni: [
-      "Gran Bretagna e Irlanda del Nord",
-    ]
-  },
+    z5: {
+      nome: "Zona 5",
+      nazioni: [
+        "Afghanistan*",
+        "Anguilla",
+        "Antigua e Barbuda",
+        "Benin",
+        "Burkina Faso*",
+        "Costa Rica",
+        "Dominica*",
+        "Gambia*",
+        "Grenada",
+        "Guatemala*",
+        "Guinea Equatoriale",
+        "Guyana",
+        "Madagascar",
+        "Montserrat",
+        "Saint Kitts And Nevis (Saint Christopher)",
+        "Saint Lucia",
+        "Saint Vincent (e Granadines)",
+        "Seychelles",
+        "Tagikistan",
+        "Turk And Caicos IS.",
+        "Vergini (Isole) - Br.",
+        "Zambia",
+        "Zimbabwe",
+      ]
+    },
 
 
-  z3bis: {
-    nome: "Zona 3 BIS",
-    nazioni: [
-      "Brasile",
-      "Cile",
-      "Perù",
-      "Turkmenistan",
-      "Uzbekistan",
-      "Venezuela",
-    ]
-  },
+    z6: {
+      nome: "Zona 6",
+      nazioni: [
+        "Antille Olandesi (Bonarie/Curacao/Saint Maarten)",
+        "Aruba",
+        "Australia",
+        "Barbados",
+        "Belize",
+        "Bolivia",
+        "Cayman Islands",
+        "Ciad",
+        "Cook (Isole)",
+        "Falkland (Isole)",
+        "Fidji (Isole)",
+        "Guadalupa",
+        "Guyana (Francese)",
+        "Haiti*",
+        "Kiribati",
+        "Mayotte",
+        "Martinica",
+        "Mongolia*",
+        "Nauru",
+        "Nicaragua",
+        "Niger",
+        "Nuova Caledonia",
+        "Nuova Zelanda",
+        "Papua Nuova Guinea",
+        "Paraguay",
+        "Pitcairn",
+        "Polinesia (Francese)",
+        "Saint Pierre e Miquelon",
+        "Salomon (Isole)",
+        "Samoa (Western)",
+        "Suriname",
+        "Timor Orientale (Est)",
+        "Tonga (Isole)",
+        "Tuvalu",
+        "Uruguay",
+        "Vanuatu",
+        "Wallis e Futuna (Isole)",
+      ]
+    },
 
-  z4bis: {
-    nome: "Zona 4 BIS",
-    nazioni: [
-      "Honduras",
-      "Kirghizistan",
-      "Repubblica Centrafricana",
-      "Repubblica Democratica del Congo*",
-    ]
-  },
+    z7: {
+      nome: "Zona 7",
+      nazioni: [
+        "Bielorussia*",
+        "Cina",
+      ]
+    },
 
-  z4tris: {
-    nome: "Zona 4 TRIS",
-    nazioni: [
-      "Armenia",
-    ]
-  },
+    z8: {
+      nome: "Zona 8",
+      nazioni: [
+        "Gran Bretagna e Irlanda del Nord",
+      ]
+    },
+
+
+    z3bis: {
+      nome: "Zona 3 BIS",
+      nazioni: [
+        "Brasile",
+        "Cile",
+        "Perù",
+        "Turkmenistan",
+        "Uzbekistan",
+        "Venezuela",
+      ]
+    },
+
+    z4bis: {
+      nome: "Zona 4 BIS",
+      nazioni: [
+        "Honduras",
+        "Kirghizistan",
+        "Repubblica Centrafricana",
+        "Repubblica Democratica del Congo*",
+      ]
+    },
+
+    z4tris: {
+      nome: "Zona 4 TRIS",
+      nazioni: [
+        "Armenia",
+      ]
+    },
 
     z4quater: {
-    nome: "Zona 4 QUATER",
-    nazioni: [
-      "Argentina",
-      "Bangladesh",
-      "Capo Verde",
-      "Colombia*",
-      "Cuba",
-      "Ecuador",
-      "Filippine",
-      "Georgia",
-      "Giappone",
-      "Hong Kong",
-      "Mozambico",
-      "Panama",
-      "Russia",
-      "Stati Uniti",
-    ]
-  },
+      nome: "Zona 4 QUATER",
+      nazioni: [
+        "Argentina",
+        "Bangladesh",
+        "Capo Verde",
+        "Colombia*",
+        "Cuba",
+        "Ecuador",
+        "Filippine",
+        "Georgia",
+        "Giappone",
+        "Hong Kong",
+        "Mozambico",
+        "Panama",
+        "Russia",
+        "Stati Uniti",
+      ]
+    },
 
   // Per Priority Internazionale (3 zone)
-  priority_internazionale: {
-    z1: {
-      nome: "Europa",
-      nazioni: ["Tutti i paesi."]
+    priority_internazionale: {
+      z1: {
+        nome: "Europa",
+        nazioni: ["Tutti i paesi."]
+      },
+      z2: {
+        nome: "Asia, Americhe, Africa",
+        nazioni: ["Tutti i paesi."]
+      },
+      z3: {
+        nome: "Oceania",
+        nazioni: ["Tutte i paesi."]
+      }
     },
-    z2: {
-      nome: "Asia, Americhe, Africa",
-      nazioni: ["Tutti i paesi."]
-    },
-    z3: {
-      nome: "Oceania",
-      nazioni: ["Tutte i paesi."]
-    }
-  },
 
   // Per Raccomandata Internazionale (3 zone)
-  raccomandata_internazionale: {
-    z1: {
-      nome: "Europa",
-      nazioni: ["Tutti i paesi."]
+    raccomandata_internazionale: {
+      z1: {
+        nome: "Europa",
+        nazioni: ["Tutti i paesi."]
+      },
+      z2: {
+        nome: "Asia, Americhe, Africa",
+        nazioni: ["Tutti i paesi."]
+      },
+      z3: {
+        nome: "Oceania",
+        nazioni: ["Tutte i paesi."]
+      }
     },
-    z2: {
-      nome: "Asia, Americhe, Africa",
-      nazioni: ["Tutti i paesi."]
-    },
-    z3: {
-      nome: "Oceania",
-      nazioni: ["Tutte i paesi."]
-    }
-  },
-}
+  }
 }
 const tariffe = {
   // Tariffe Italia
@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contenutoDiv = document.getElementById('contenutoWrapper');
 
 
-   if (!destinazioneSelect || !tipoDestinazioneSelect || !contenutoDiv) {
+  if (!destinazioneSelect || !tipoDestinazioneSelect || !contenutoDiv) {
     console.error('Elementi mancanti nel DOM');
     return;
   }
@@ -658,8 +658,8 @@ function cercaZonaPerNazione() {
   }
 
   risultato.innerHTML = risultati.length > 0
-    ? risultati.join('<br>')
-    : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
+  ? risultati.join('<br>')
+  : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
 }
 
 function calcolaSpedizione() {
@@ -675,8 +675,8 @@ function calcolaSpedizione() {
 
   const intestazione = creaIntestazione(peso);
   const risultati = tipoDestinazione === 'italia'
-    ? calcolaTariffeItalia(peso)
-    : calcolaTariffeEstero(peso);
+  ? calcolaTariffeItalia(peso)
+  : calcolaTariffeEstero(peso);
 
   if (risultati.length === 0) {
     risultatoEl.innerHTML = '<div class="errore">⚠️ Nessun metodo disponibile</div>';
@@ -686,23 +686,23 @@ function calcolaSpedizione() {
   // Classifica le opzioni
 // Trova la "scelta consigliata" tra le opzioni più affidabili
 
-const affidabili = risultati.filter(r => {
-  const nome = r.nome.toLowerCase();
+  const affidabili = risultati.filter(r => {
+    const nome = r.nome.toLowerCase();
 
-  const isPieghiTracciabile = (
-    nome.includes('pieghi di libri') &&
-    !nome.includes('non tracciabile') &&
-    (nome.includes('tracciabile') || nome.includes('avviso'))
-  );
+    const isPieghiTracciabile = (
+      nome.includes('pieghi di libri') &&
+      !nome.includes('non tracciabile') &&
+      (nome.includes('tracciabile') || nome.includes('avviso'))
+      );
 
-  const isRaccomandata = nome.includes('raccomandata');
-  const isPacco = nome.includes('pacco ordinario');
+    const isRaccomandata = nome.includes('raccomandata');
+    const isPacco = nome.includes('pacco ordinario');
 
-  return isPieghiTracciabile || isRaccomandata || isPacco;
-});
+    return isPieghiTracciabile || isRaccomandata || isPacco;
+  });
 
 
-const migliore = affidabili.length > 0
+  const migliore = affidabili.length > 0
   ? affidabili.reduce((a, b) => a.prezzo < b.prezzo ? a : b)
   : risultati.reduce((a, b) => a.prezzo < b.prezzo ? a : b); // fallback su la più economica assoluta
 
@@ -734,78 +734,78 @@ function creaIntestazione(peso) {
       <p>⚖️ ${peso}g • 📦 ${ingombrante ? 'Ingombrante' : 'Standard'}</p>
     </div>
     <hr>`;
-}
+  }
 
-function parseRange(fascia) {
-  const cleaned = fascia.toLowerCase()
+  function parseRange(fascia) {
+    const cleaned = fascia.toLowerCase()
     .replace('kg', '000')
     .replace('g', '')
     .replace('fino ', '')
     .replace(/\s/g, '');
-  
-  return cleaned.includes('-') 
+    
+    return cleaned.includes('-') 
     ? cleaned.split('-').map(v => parseInt(v)) 
     : [0, parseInt(cleaned)];
-}
-
-function calcolaTariffeItalia(peso) {
-  const ingombrante = document.getElementById('dimensioni').value === 'si';
-  const opzioni = [];
-
-  const crea = (nome, prezzo) => opzioni.push({
-    nome,
-    prezzo,
-    html: creaServizio(nome, prezzo)
-  });
-
-  const posta1 = tariffe.posta1.find(m => {
-    const [min, max] = parseRange(m.fascia_peso);
-    return peso >= min && peso <= max;
-  });
-  if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
-
-  const tipoContenuto = document.getElementById('tipoContenuto').value;
-
-if (tipoContenuto === 'libro') {
-  const pieghi = tariffe.pieghi_libri.find(m => {
-    const [min, max] = parseRange(m.fascia_peso);
-    return peso >= min && peso <= max;
-  });
-  if (pieghi) {
-    ['non_tracciabile', 'tracciabile', 'tracciabile_avviso'].forEach(tipo => {
-      const label = {
-        non_tracciabile: '📚 Pieghi di Libri – Non Tracciabile',
-        tracciabile: '📚 Pieghi di Libri – Tracciabile',
-        tracciabile_avviso: '📚 Pieghi di Libri – Tracciabile + Avviso'
-      }[tipo];
-      crea(label, pieghi[tipo]);
-    });
   }
-}
 
-  const pacco = tariffe.pacco_ordinario.find(m => {
-    const [min, max] = parseRange(m.fascia_peso);
-    return peso >= min && peso <= max;
-  });
-  if (pacco) crea('📦 Pacco Ordinario', ingombrante ? pacco.ingombrante : pacco.standard);
+  function calcolaTariffeItalia(peso) {
+    const ingombrante = document.getElementById('dimensioni').value === 'si';
+    const opzioni = [];
 
-  const raccomandata = tariffe.raccomandata.find(m => {
-    const [min, max] = parseRange(m.fascia_peso);
-    return peso >= min && peso <= max;
-  });
-  if (raccomandata) crea('📨 Raccomandata', raccomandata.prezzo);
+    const crea = (nome, prezzo) => opzioni.push({
+      nome,
+      prezzo,
+      html: creaServizio(nome, prezzo)
+    });
 
-  return opzioni;
-}
+    const posta1 = tariffe.posta1.find(m => {
+      const [min, max] = parseRange(m.fascia_peso);
+      return peso >= min && peso <= max;
+    });
+    if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
 
-function calcolaTariffeEstero(peso) {
-  const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
-  const zona = document.getElementById('destinazione').value.replace('estero', 'z');
+    const tipoContenuto = document.getElementById('tipoContenuto').value;
 
-  const lista = tariffe[
+    if (tipoContenuto === 'libro') {
+      const pieghi = tariffe.pieghi_libri.find(m => {
+        const [min, max] = parseRange(m.fascia_peso);
+        return peso >= min && peso <= max;
+      });
+      if (pieghi) {
+        ['non_tracciabile', 'tracciabile', 'tracciabile_avviso'].forEach(tipo => {
+          const label = {
+            non_tracciabile: '📚 Pieghi di Libri – Non Tracciabile',
+            tracciabile: '📚 Pieghi di Libri – Tracciabile',
+            tracciabile_avviso: '📚 Pieghi di Libri – Tracciabile + Avviso'
+          }[tipo];
+          crea(label, pieghi[tipo]);
+        });
+      }
+    }
+
+    const pacco = tariffe.pacco_ordinario.find(m => {
+      const [min, max] = parseRange(m.fascia_peso);
+      return peso >= min && peso <= max;
+    });
+    if (pacco) crea('📦 Pacco Ordinario', ingombrante ? pacco.ingombrante : pacco.standard);
+
+    const raccomandata = tariffe.raccomandata.find(m => {
+      const [min, max] = parseRange(m.fascia_peso);
+      return peso >= min && peso <= max;
+    });
+    if (raccomandata) crea('📨 Raccomandata', raccomandata.prezzo);
+
+    return opzioni;
+  }
+
+  function calcolaTariffeEstero(peso) {
+    const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
+    const zona = document.getElementById('destinazione').value.replace('estero', 'z');
+
+    const lista = tariffe[
     tipoSpedizione === 'paccoInt'
-      ? 'ordinario_internazionale'
-      : `${tipoSpedizione}_internazionale`
+    ? 'ordinario_internazionale'
+    : `${tipoSpedizione}_internazionale`
   ][zona];
 
   if (!lista) return [];
@@ -837,13 +837,13 @@ function creaServizio(nome, prezzo) {
   const isPieghiNonTracciabile = (
     lower.includes("pieghi di libri") &&
     lower.includes("non tracciabile")
-  );
+    );
 
   const isPieghiTracciabile = (
     lower.includes("pieghi di libri") &&
     !lower.includes("non tracciabile") &&
     (lower.includes("tracciabile") || lower.includes("avviso"))
-  );
+    );
 
   const isRaccomandata = lower.includes("raccomandata");
   const isPacco = lower.includes("pacco ordinario");
@@ -860,8 +860,8 @@ function creaServizio(nome, prezzo) {
   }
 
   const tagHTML = tags.length
-    ? `<div class="etichetta-container">${tags.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
-    : '';
+  ? `<div class="etichetta-container">${tags.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
+  : '';
 
   return `
     <div class="servizio">
@@ -869,6 +869,6 @@ function creaServizio(nome, prezzo) {
       <h4>${nome}</h4>
       <p>€${prezzo.toFixed(2)}</p>
     </div>`;
-}
+  }
 
 
