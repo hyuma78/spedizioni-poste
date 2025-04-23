@@ -685,7 +685,10 @@ function calcolaSpedizione() {
 // Trova la "scelta consigliata" tra le opzioni più affidabili
 const affidabili = risultati.filter(r => {
   const nome = r.nome.toLowerCase();
-  return nome.includes('tracciabile') || nome.includes('raccomandata') || nome.includes('avviso');
+  const isTracciabile = nome.includes('tracciabile') && !nome.includes('non tracciabile');
+  const isRaccomandata = nome.includes('raccomandata');
+  const hasAvviso = nome.includes('avviso');
+  return isTracciabile || isRaccomandata || hasAvviso;
 });
 
 const migliore = affidabili.length > 0
