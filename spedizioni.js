@@ -681,16 +681,17 @@ function calcolaSpedizione() {
     return;
   }
 
-  // Classifica le opzioni
-  const risultatiAnalizzati = risultati.map(r => {
-    const lower = r.nome.toLowerCase();
-    const isCheap = r.prezzo <= Math.min(...risultati.map(opt => opt.prezzo));
-    const hasTracking = lower.includes('tracciabile') || lower.includes('raccomandata');
-    const isSafe = lower.includes('avviso') || lower.includes('raccomandata');
+// Filtra solo opzioni tracciabili o sicure
+const affidabili = risultati.filter(r => {
+  const nome = r.nome.toLowerCase();
+  return nome.includes('tracciabile') || nome.includes('raccomandata') || nome.includes('avviso');
+});
 
-    r.punteggio = (isCheap ? 1 : 0) + (hasTracking ? 1 : 0) + (isSafe ? 1 : 0);
-    return r;
-  });
+// Se ci sono opzioni affidabili, prendi quella col prezzo più basso tra quelle
+const migliore = affidabili.length > 0
+  ? affidabili.reduce((a, b) => a.prezzo < b.prezzo ? a : b)
+  : risultati.reduce((a, b) => a.prezzo < b.prezzo ? a : b); // fallback (es. solo piego non tracciabile)
+
 
   const migliore = risultatiAnalizzati.reduce((a, b) => b.punteggio > a.punteggio ? b : a);
 
