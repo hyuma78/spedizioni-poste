@@ -689,6 +689,7 @@ const affidabili = risultati.filter(r => {
 
   const isPieghiTracciabile = (
     nome.includes('pieghi di libri') &&
+    !nome.includes('non tracciabile') &&
     (nome.includes('tracciabile') || nome.includes('avviso'))
   );
 
