@@ -827,16 +827,29 @@ function calcolaTariffeEstero(peso) {
   }];
 }
 
-
 function creaServizio(nome, prezzo) {
   const tags = [];
 
-  // Analisi contenuto per decidere etichette
   const lower = nome.toLowerCase();
 
-  if (lower.includes("non tracciabile")) tags.push("💰 Economica");
-  if (lower.includes("tracciabile") || lower.includes("raccomandata")) tags.push("📍 Tracciabile");
-  if (lower.includes("avviso") || lower.includes("raccomandata")) tags.push("🔐 Sicura");
+  // ECONOMICA
+  if (lower.includes("non tracciabile") && !lower.includes("pieghi di libri tracciabile")) {
+    tags.push("💰 Economica");
+  }
+
+  // TRACCIABILE
+  const isPieghiTracciabile = (
+    lower.includes("pieghi di libri") &&
+    (lower.includes("tracciabile") || lower.includes("avviso"))
+  );
+
+  const isRaccomandata = lower.includes("raccomandata");
+  const isPacco = lower.includes("pacco ordinario");
+
+  if (isPieghiTracciabile || isRaccomandata || isPacco) {
+    tags.push("📍 Tracciabile");
+    tags.push("🔐 Sicura");
+  }
 
   const tagHTML = tags.length
     ? `<div class="etichetta-container">${tags.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
@@ -849,3 +862,4 @@ function creaServizio(nome, prezzo) {
       <p>€${prezzo.toFixed(2)}</p>
     </div>`;
 }
+
