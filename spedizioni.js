@@ -509,27 +509,58 @@ const tariffe = {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Inizializza gli elementi corretti
+  // Inizializza gli elementi
   const destinazioneSelect = document.getElementById('destinazione');
-  const tipoDestinazioneSelect = document.getElementById('tipoDestinazione');
   const contenutoDiv = document.getElementById('contenutoWrapper');
 
-
-  if (!destinazioneSelect || !tipoDestinazioneSelect || !contenutoDiv) {
+  if (!destinazioneSelect || !contenutoDiv) {
     console.error('Elementi mancanti nel DOM');
     return;
   }
 
-  // Inizializza l'UI
+  // Mostra sezione Italia di default
   destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
   document.getElementById('sezioneEstero').classList.add('hidden');
-  contenutoDiv.classList.remove('hidden'); // Mostralo di default per Italia
+  contenutoDiv.classList.remove('hidden');
 
-  // Aggiungi gli event listeners corretti
-  tipoDestinazioneSelect.addEventListener('change', gestisciDestinazione);
+  // Attiva i pulsanti tile per la destinazione (Italia / Estero)
+  document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // reset visivo
+      document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      const tipo = btn.dataset.value;
+      aggiornaDestinazione(tipo);
+    });
+  });
+
+  // Altri event listener
   document.getElementById('tipoSpedizioneEstero').addEventListener('change', caricaZoneEstero);
   document.getElementById('calcola').addEventListener('click', calcolaSpedizione);
 });
+
+
+function aggiornaDestinazione(tipo) {
+  const sezioneEstero = document.getElementById('sezioneEstero');
+  const contenutoDiv = document.getElementById('contenutoWrapper');
+  const destinazioneSelect = document.getElementById('destinazione');
+  const infoDiv = document.getElementById('infoNazioni');
+  const elencoDiv = document.getElementById('elencoNazioni');
+
+  infoDiv.classList.add('hidden');
+  elencoDiv.innerHTML = '';
+
+  if (tipo === 'italia') {
+    sezioneEstero.classList.add('hidden');
+    destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
+    contenutoDiv.classList.remove('hidden');
+  } else {
+    sezioneEstero.classList.remove('hidden');
+    caricaZoneEstero();
+    contenutoDiv.classList.add('hidden');
+  }
+}
 
 function gestisciDestinazione() {
   const tipo = this.value;
