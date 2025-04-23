@@ -753,6 +753,9 @@ function calcolaTariffeItalia(peso) {
   });
   if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
 
+  const tipoContenuto = document.getElementById('tipoContenuto').value;
+
+if (tipoContenuto === 'libro') {
   const pieghi = tariffe.pieghi_libri.find(m => {
     const [min, max] = parseRange(m.fascia_peso);
     return peso >= min && peso <= max;
@@ -767,6 +770,7 @@ function calcolaTariffeItalia(peso) {
       crea(label, pieghi[tipo]);
     });
   }
+}
 
   const pacco = tariffe.pacco_ordinario.find(m => {
     const [min, max] = parseRange(m.fascia_peso);
