@@ -847,9 +847,14 @@ function creaServizio(nome, prezzo) {
 
   const isRaccomandata = lower.includes("raccomandata");
   const isPacco = lower.includes("pacco ordinario");
+  const isPosta1 = lower.includes("posta 1");
+
+if (isPieghiNonTracciabile || isPosta1) {
+  tags.push("💰 Economica");
+}
 
   // 💰 Economica
-  if (isPieghiNonTracciabile || lower.includes("posta 1")) {
+  if (isPieghiNonTracciabile) {
     tags.push("💰 Economica");
   }
 
