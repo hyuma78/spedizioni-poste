@@ -4,10 +4,12 @@ Un progetto web leggero (HTML + JavaScript) che permette agli utenti di stimare 
 spedizione in base alla destinazione e al peso del pacco.
 Ideale per e-commerce, privati o piccole attività.
 
+ **** Le tariffe sono aggiornate ad Aprile 2025. ****
+
 ## Funzionalità principali
 
 - ✅ Scelta tra **Italia** o **Estero** come destinazione.
-- ✅ Inserimento del **peso** del pacco (in kg).
+- ✅ Inserimento del **peso** del pacco (in grammi).
 - ✅ Scegliere il tipo di merce da spedire.
 - ✅ Calcolo istantaneo del costo totale.
 - ✅ Interfaccia pulita e responsive.
