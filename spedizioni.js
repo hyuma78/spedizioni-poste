@@ -860,8 +860,9 @@ function creaServizio(nome, prezzo) {
     tags.push("🔐 Sicura");
   }
 
-  const tagHTML = tags.length
-  ? `<div class="etichetta-container">${tags.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
+const tagUnici = [...new Set(tags)];
+const tagHTML = tagUnici.length
+  ? `<div class="etichetta-container">${tagUnici.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
   : '';
 
   return `
