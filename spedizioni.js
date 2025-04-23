@@ -632,57 +632,44 @@ function mostraNazioniZona() {
 document.getElementById('ricercaNazione').addEventListener('input', cercaZonaPerNazione);
 
 function cercaZonaPerNazione() {
-  const input = document.getElementById('ricercaNazione').value.trim()
-    .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Rimuove accenti
-    .replace(/\s+/g, ' '); // Normalizza spazi
-
+  const input = document.getElementById('ricercaNazione').value.trim().toLowerCase();
   const risultato = document.getElementById('risultatoZona');
-  
+
   if (!input) {
     risultato.innerHTML = '';
     return;
   }
 
-  const risultati = new Set();
-  const zone = mappaturaNazioni["ordinario_internazionale"];
+  const risultati = [];
+  const zone = mappaturaNazioni["ordinario_internazionale"]; // ← SOLO pacco ordinario internazionale
 
   for (const [codiceZona, zona] of Object.entries(zone)) {
-    if (!Array.isArray(zona.nazioni)) continue;
+    if (!Array.isArray(zona.nazioni)) continue; // ← SKIP se non è una lista valida
 
     for (const nazione of zona.nazioni) {
-      const nomeNormalizzato = nazione.toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, ' ');
+      const nome = nazione.toLowerCase();
 
-      if (nomeNormalizzato === input) {
-        risultati.add(`✅ <em>${nazione}</em> → ${zona.nome} (${codiceZona.toUpperCase()})`);
-      } else if (nomeNormalizzato.includes(input)) {
-        risultati.add(`🌍 <em>${nazione}</em> → ${zona.nome} (${codiceZona.toUpperCase()})`);
+      if (nome === input) {
+        risultati.push(`✅ <em>${nazione}</em> si trova in: <strong>${zona.nome} (${codiceZona.toUpperCase()})</strong>`);
+      } else if (nome.includes(input)) {
+        risultati.push(`🌍 <em>${nazione}</em> si trova in: <strong>${zona.nome} (${codiceZona.toUpperCase()})</strong>`);
       }
     }
   }
 
-  risultato.innerHTML = risultati.size > 0
-    ? [...risultati].join('<br>')
-    : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
+  risultato.innerHTML = risultati.length > 0
+  ? risultati.join('<br>')
+  : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
 }
 
 function calcolaSpedizione() {
+  const tipoDestinazione = document.getElementById('tipoDestinazione').value;
   const risultatoEl = document.getElementById('risultato');
-  risultatoEl.innerHTML = '<div class="loader"></div>'; // Mostra loader
+  risultatoEl.innerHTML = '';
 
   const peso = parseInt(document.getElementById('peso').value);
-  const tipoDestinazione = document.getElementById('tipoDestinazione').value;
-  const maxPeso = 20000; // 20kg
-
   if (!peso || peso < 1) {
     risultatoEl.innerHTML = '<div class="errore">❌ Inserisci un peso valido!</div>';
-    return;
-  }
-
-  if (peso > maxPeso) {
-    risultatoEl.innerHTML = '<div class="errore">⚠️ Peso massimo consentito: 20kg</div>';
     return;
   }
 
@@ -769,7 +756,6 @@ function creaIntestazione(peso) {
       nome,
       prezzo,
       html: creaServizio(nome, prezzo)
-
     });
 
     const posta1 = tariffe.posta1.find(m => {
@@ -812,15 +798,14 @@ function creaIntestazione(peso) {
     return opzioni;
   }
 
-function calcolaTariffeEstero(peso) {
-  const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
-  const zona = document.getElementById('destinazione').value.replace('estero', 'z');
-  const zonaNome = mappaturaNazioni.ordinario_internazionale[zona]?.nome || '';
+  function calcolaTariffeEstero(peso) {
+    const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
+    const zona = document.getElementById('destinazione').value.replace('estero', 'z');
 
-  const lista = tariffe[
-    tipoSpedizione === 'paccoInt' 
-      ? 'ordinario_internazionale' 
-      : `${tipoSpedizione}_internazionale`
+    const lista = tariffe[
+    tipoSpedizione === 'paccoInt'
+    ? 'ordinario_internazionale'
+    : `${tipoSpedizione}_internazionale`
   ][zona];
 
   if (!lista) return [];
@@ -835,35 +820,50 @@ function calcolaTariffeEstero(peso) {
   const nome = {
     priority: '✈️ Priority Internazionale',
     raccomandata: '📨 Raccomandata Internazionale',
-    paccoInt: `🌍 Pacco Ordinario Internazionale (${zonaNome})`
+    paccoInt: '🌍 Pacco Ordinario Internazionale'
   }[tipoSpedizione];
 
   return [{
     nome,
-    prezzo: match.prezzo,
-    html: creaServizio(nome, match.prezzo)
+    prezzo: match.prezzo || match.standard,
+    html: creaServizio(nome, match.prezzo || match.standard)
   }];
 }
 
-// MODIFICA A creaServizio per tooltip
 function creaServizio(nome, prezzo) {
   const tags = [];
-  const tooltips = {
-    '💰 Economica': 'Opzione economica senza tracciamento',
-    '📍 Tracciabile': 'Servizio con tracking completo',
-    '🔐 Sicura': 'Servizio assicurato e protetto'
-  };
+  const lower = nome.toLowerCase();
 
-  // Logica tags invariata...
-  
-  const tagUnici = [...new Set(tags)];
-  const tagHTML = tagUnici.length
-    ? `<div class="etichetta-container">${
-        tagUnici.map(t => 
-          `<span class="etichetta" data-tooltip="${tooltips[t] || ''}">${t}</span>`
-        ).join('')
-      }</div>`
-    : '';
+  const isPieghiNonTracciabile = (
+    lower.includes("pieghi di libri") &&
+    lower.includes("non tracciabile")
+    );
+
+  const isPieghiTracciabile = (
+    lower.includes("pieghi di libri") &&
+    !lower.includes("non tracciabile") &&
+    (lower.includes("tracciabile") || lower.includes("avviso"))
+    );
+
+  const isRaccomandata = lower.includes("raccomandata");
+  const isPacco = lower.includes("pacco ordinario");
+  const isPosta1 = lower.includes("posta 1");
+
+  // 💰 Economica
+  if (isPieghiNonTracciabile || isPosta1) {
+    tags.push("💰 Economica");
+  }
+
+  // 📍 Tracciabile + 🔐 Sicura
+  if (isPieghiTracciabile || isRaccomandata || isPacco) {
+    tags.push("📍 Tracciabile");
+    tags.push("🔐 Sicura");
+  }
+
+const tagUnici = [...new Set(tags)];
+const tagHTML = tagUnici.length
+  ? `<div class="etichetta-container">${tagUnici.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
+  : '';
 
   return `
     <div class="servizio">
@@ -871,5 +871,6 @@ function creaServizio(nome, prezzo) {
       <h4>${nome}</h4>
       <p>€${prezzo.toFixed(2)}</p>
     </div>`;
-}
+  }
+
 
