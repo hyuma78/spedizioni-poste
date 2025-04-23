@@ -742,7 +742,7 @@ function creaIntestazione(peso) {
     .replace('g', '')
     .replace('fino ', '')
     .replace(/\s/g, '');
-    
+
     return cleaned.includes('-') 
     ? cleaned.split('-').map(v => parseInt(v)) 
     : [0, parseInt(cleaned)];
@@ -834,6 +834,9 @@ function creaServizio(nome, prezzo) {
   const tags = [];
   const lower = nome.toLowerCase();
 
+  const isPosta1 = (
+    lower.includes("posta1"));
+
   const isPieghiNonTracciabile = (
     lower.includes("pieghi di libri") &&
     lower.includes("non tracciabile")
@@ -849,7 +852,7 @@ function creaServizio(nome, prezzo) {
   const isPacco = lower.includes("pacco ordinario");
 
   // 💰 Economica
-  if (isPieghiNonTracciabile) {
+  if (isPieghiNonTracciabile || isPosta1) {
     tags.push("💰 Economica");
   }
 
