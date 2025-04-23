@@ -547,9 +547,13 @@ function gestisciDestinazione() {
   if (tipo === 'italia') {
     sezioneEstero.classList.add('hidden');
     destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
+    tipoContenuto.style.display = 'block'; // Rende visibile il select tipoContenuto
+ 
   } else {
     sezioneEstero.classList.remove('hidden');
     caricaZoneEstero();
+    tipoContenuto.style.display = 'none'; // Nasconde il select tipoContenuto
+
   }
 }
 
