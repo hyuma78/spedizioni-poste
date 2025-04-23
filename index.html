@@ -5,181 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calcolo Spedizioni Italia e Estero</title>
   <style>
-    /* Gli stili CSS rimangono invariati */
-    body { 
-      font-family: 'Arial', sans-serif; 
-      line-height: 1.6; 
-      margin: 0; 
-      padding: 20px; 
-      background-color: #f5f5f5; 
-    }
-    
-    .container { 
-      max-width: 600px; 
-      margin: 0 auto; 
-      background: white; 
-      padding: 30px; 
-      border-radius: 10px; 
-      box-shadow: 0 0 20px rgba(0,0,0,0.1); 
-    }
-    
-    .hidden {
-      display: none !important;
-    }
+/* Gli stili CSS rimangono invariati */
+body { 
+  font-family: 'Arial', sans-serif; 
+  line-height: 1.6; 
+  margin: 0; 
+  padding: 20px; 
+  background-color: #f5f5f5; 
+}
 
-    .form-group {
-      margin: 15px 0;
-      transition: all 0.3s ease;
-    }
+.container { 
+  max-width: 600px; 
+  margin: 0 auto; 
+  background: white; 
+  padding: 30px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
 
-    .riepilogo { 
-      background: #f8f9fa; 
-      padding: 15px; 
-      border-radius: 8px; 
-      margin-bottom: 20px; 
-    }
+.hidden {
+  display: none !important;
+}
 
-    .servizio {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+.form-group {
+  margin: 15px 0;
+  transition: all 0.3s ease;
+}
 
-    .etichetta {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      font-size: 12px;
-      padding: 3px 6px;
-      border-radius: 4px;
-      margin: 0 5px 5px 0;
-    }
+.riepilogo { 
+  background: #f8f9fa; 
+  padding: 15px; 
+  border-radius: 8px; 
+  margin-bottom: 20px; 
+}
 
-    .servizio .etichetta-container {
-      margin-bottom: 10px;
-    }
+.servizio {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
-    .errore {
-      color: #dc3545;
-      padding: 10px;
-      background: #fff5f5;
-      border-radius: 5px;
-    }
+.etichetta {
+  display: inline-block;
+  background: #3498db;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  margin: 0 5px 5px 0;
+}
 
-    h1 { 
-      color: #2c3e50; 
-      text-align: center; 
-      margin-bottom: 30px; 
-    }
-    
-    label, select, input { 
-      display: block; 
-      width: 100%; 
-      margin: 10px 0; 
-      padding: 10px; 
-      border: 1px solid #ddd; 
-      border-radius: 5px; 
-    }
-    
-    button { 
-      width: 100%; 
-      padding: 15px; 
-      background: #3498db; 
-      color: white; 
-      border: none; 
-      border-radius: 5px; 
-      cursor: pointer; 
-      font-size: 16px; 
-      margin-top: 20px; 
-      transition: background 0.3s ease; 
-    }
-    
-    button:hover { 
-      background: #2980b9; 
-    }
+.servizio .etichetta-container {
+  margin-bottom: 10px;
+}
 
-    #risultato { 
-      margin-top: 25px; 
-      padding: 15px; 
-      background: #ecf0f1; 
-      border-radius: 5px; 
-      font-weight: bold; 
-      color: #2c3e50; 
-    }
-    .servizio.migliore {
-      border: 2px solid #27ae60;
-      background-color: #eafaf1;
-      position: relative;
-    }
+.errore {
+  color: #dc3545;
+  padding: 10px;
+  background: #fff5f5;
+  border-radius: 5px;
+}
 
-    .servizio.migliore::before {
-      content: "✔ Miglior Prezzo";
-      position: absolute;
-      top: -10px;
-      right: 10px;
-      background: #27ae60;
-      color: white;
-      padding: 2px 6px;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-    .etichetta {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      font-size: 12px;
-      padding: 3px 6px;
-      border-radius: 4px;
-      margin: 0 5px 5px 0;
-    }
+h1 { 
+  color: #2c3e50; 
+  text-align: center; 
+  margin-bottom: 30px; 
+}
 
-    .servizio .etichetta-container {
-      margin-bottom: 10px;
-    }
-  </style>
+label, select, input { 
+  display: block; 
+  width: 100%; 
+  margin: 10px 0; 
+  padding: 10px; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+}
+
+button { 
+  width: 100%; 
+  padding: 15px; 
+  background: #3498db; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  margin-top: 20px; 
+  transition: background 0.3s ease; 
+}
+
+button:hover { 
+  background: #2980b9; 
+}
+
+#risultato { 
+  margin-top: 25px; 
+  padding: 15px; 
+  background: #ecf0f1; 
+  border-radius: 5px; 
+  font-weight: bold; 
+  color: #2c3e50; 
+}
+.servizio.migliore {
+  border: 2px solid #27ae60;
+  background-color: #eafaf1;
+  position: relative;
+}
+
+.servizio.migliore::before {
+  content: "✔ Miglior Prezzo";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: #27ae60;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.etichetta {
+  display: inline-block;
+  background: #3498db;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  margin: 0 5px 5px 0;
+}
+
+.servizio .etichetta-container {
+  margin-bottom: 10px;
+}
+</style>
 </head>
 <body>
 
   <div class="container">
     <h1>Calcolo Tariffe Spedizioni</h1>
 
-    <!-- Tipo Destinazione -->
-    <div class="form-group">
-      <label for="tipoDestinazione">Destinazione:</label>
-      <select id="tipoDestinazione">
-        <option value="italia">Italia</option>
-        <option value="estero">Estero</option>
-      </select>
-    </div>
+<!-- Tipo Destinazione -->
+<div class="form-group">
+  <label for="tipoDestinazione">Destinazione:</label>
+  <select id="tipoDestinazione">
+    <option value="italia">Italia</option>
+    <option value="estero">Estero</option>
+  </select>
+</div>
 
-    <!-- Sezione Estero (nascosta inizialmente) -->
-    <div class="form-group hidden" id="sezioneEstero">
-      <label for="tipoSpedizioneEstero">Tipo Spedizione Estero:</label>
-      <select id="tipoSpedizioneEstero">
-        <option value="priority">Priority Internazionale</option>
-        <option value="raccomandata">Raccomandata Internazionale</option>
-        <option value="paccoInt">Pacco Ordinario Internazionale</option>
-      </select>
+<!-- Sezione Estero (nascosta inizialmente) -->
+<div class="form-group hidden" id="sezioneEstero">
+  <label for="tipoSpedizioneEstero">Tipo Spedizione Estero:</label>
+  <select id="tipoSpedizioneEstero">
+    <option value="priority">Priority Internazionale</option>
+    <option value="raccomandata">Raccomandata Internazionale</option>
+    <option value="paccoInt">Pacco Ordinario Internazionale</option>
+  </select>
 
-      <!-- Destinazione Specifica per Estero -->
-      <div class="form-group">
-        <label for="destinazione">Destinazione Specifica:</label>
-        <select id="destinazione"></select>
-      </div>
-    </div>
+<!-- Destinazione Specifica per Estero -->
+<div class="form-group">
+  <label for="destinazione">Destinazione Specifica:</label>
+  <select id="destinazione"></select>
+</div>
+</div>
 
-    <div id="infoNazioni" class="form-group hidden">
-      <label><strong>Nazioni in questa zona:</strong></label>
-      <div id="elencoNazioni" style="max-height: 150px; overflow-y: auto; background: #f0f0f0; padding: 10px; border-radius: 5px;"></div>
-    </div>
+<div id="infoNazioni" class="form-group hidden">
+  <label><strong>Nazioni in questa zona:</strong></label>
+  <div id="elencoNazioni" style="max-height: 150px; overflow-y: auto; background: #f0f0f0; padding: 10px; border-radius: 5px;"></div>
+</div>
 
-    <div id="ricercaNazioneWrapper" class="form-group hidden">
-      <label for="ricercaNazione"><strong>Cerca una nazione per sapere la zona:</strong></label>
-      <input type="text" id="ricercaNazione" placeholder="Es. Stati Uniti">
-      <div id="risultatoZona" style="margin-top: 10px; color: #2c3e50; font-weight: bold;"></div>
-    </div>
+<div id="ricercaNazioneWrapper" class="form-group hidden">
+  <label for="ricercaNazione"><strong>Cerca una nazione per sapere la zona:</strong></label>
+  <input type="text" id="ricercaNazione" placeholder="Es. Stati Uniti">
+  <div id="risultatoZona" style="margin-top: 10px; color: #2c3e50; font-weight: bold;"></div>
+</div>
 
 <!-- PRIMA COSA STAI SPEDENDO -->
 <div id="contenutoWrapper" class="form-group">
