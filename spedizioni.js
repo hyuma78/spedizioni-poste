@@ -849,7 +849,7 @@ function creaServizio(nome, prezzo) {
   const isPacco = lower.includes("pacco ordinario");
 
   // 💰 Economica
-  if (isPieghiNonTracciabile) {
+  if (isPieghiNonTracciabile || lower.includes("posta 1")) {
     tags.push("💰 Economica");
   }
 
