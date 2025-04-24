@@ -1,6 +1,5 @@
 // Prezzi aggiornati ad Aprile 2025
 
-
 // variabili globali
 let tipoDestinazioneSelezionato = 'italia';
 let tipoContenutoSelezionato = 'libro';
@@ -705,49 +704,80 @@ function cercaZonaPerNazione() {
   : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
 }
 
+function mostraErrore(messaggio) {
+  const erroreEl = document.getElementById('messaggioErrore');
+  erroreEl.textContent = messaggio;
+  erroreEl.classList.remove('hidden');
+  erroreEl.classList.add('visible');
+
+  // Scrolla per visibilità
+  erroreEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Effetto shake
+  erroreEl.classList.remove('shake'); // reset
+  void erroreEl.offsetWidth; // forzatura del reflow per ri-triggerare l'animazione
+  erroreEl.classList.add('shake');
+}
+
+function nascondiErrore() {
+  const erroreEl = document.getElementById('messaggioErrore');
+  erroreEl.classList.remove('visible');
+  setTimeout(() => {
+    erroreEl.classList.add('hidden');
+    erroreEl.textContent = '';
+  }, 300);
+}
+
 function calcolaSpedizione() {
-  const tipoDestinazione = tipoDestinazioneSelezionato;
   const risultatoEl = document.getElementById('risultato');
+  const peso = parseInt(document.getElementById('peso').value);
   risultatoEl.innerHTML = '';
 
-  const peso = parseInt(document.getElementById('peso').value);
+  // ✅ Validazioni iniziali
   if (!peso || peso < 1) {
-    risultatoEl.innerHTML = '<div class="errore">❌ Inserisci un peso valido!</div>';
+    mostraErrore('❌ Inserisci un peso valido!');
     return;
   }
 
+  if (!tipoDestinazioneSelezionato) {
+    mostraErrore('❌ Seleziona una destinazione (Italia o Estero).');
+    return;
+  }
+
+  if (tipoDestinazioneSelezionato === 'italia' && !tipoContenutoSelezionato) {
+    mostraErrore('❌ Seleziona cosa stai spedendo (Libri o Altro).');
+    return;
+  }
+
+  // ✅ Tutto ok, nascondi errore
+  nascondiErrore();
+
   const intestazione = creaIntestazione(peso);
-  const risultati = tipoDestinazione === 'italia'
-  ? calcolaTariffeItalia(peso)
-  : calcolaTariffeEstero(peso);
+  const risultati = tipoDestinazioneSelezionato === 'italia'
+    ? calcolaTariffeItalia(peso)
+    : calcolaTariffeEstero(peso);
 
   if (risultati.length === 0) {
     risultatoEl.innerHTML = '<div class="errore">⚠️ Nessun metodo disponibile</div>';
     return;
   }
 
-  // Classifica le opzioni
-// Trova la "scelta consigliata" tra le opzioni più affidabili
-
+  // ✅ Scelta consigliata
   const affidabili = risultati.filter(r => {
     const nome = r.nome.toLowerCase();
-
     const isPieghiTracciabile = (
       nome.includes('pieghi di libri') &&
       !nome.includes('non tracciabile') &&
       (nome.includes('tracciabile') || nome.includes('avviso'))
-      );
-
+    );
     const isRaccomandata = nome.includes('raccomandata');
     const isPacco = nome.includes('pacco ordinario');
-
     return isPieghiTracciabile || isRaccomandata || isPacco;
   });
 
-
   const migliore = affidabili.length > 0
-  ? affidabili.reduce((a, b) => a.prezzo < b.prezzo ? a : b)
-  : risultati.reduce((a, b) => a.prezzo < b.prezzo ? a : b); // fallback su la più economica assoluta
+    ? affidabili.reduce((a, b) => a.prezzo < b.prezzo ? a : b)
+    : risultati.reduce((a, b) => a.prezzo < b.prezzo ? a : b);
 
   let outputHTML = intestazione;
   outputHTML += `
