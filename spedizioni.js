@@ -1,8 +1,8 @@
 // Prezzi aggiornati ad Aprile 2025
 
 // variabili globali
-let tipoDestinazioneSelezionato = 'italia';
-let tipoContenutoSelezionato = 'libro';
+let tipoDestinazioneSelezionato = null;
+let tipoContenutoSelezionato    = null;
 
 const mappaturaNazioni = {
   // Per Pacco Ordinario Internazionale (12 zone)
@@ -545,7 +545,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mostra sezione Italia di default
   destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
   document.getElementById('sezioneEstero').classList.add('hidden');
-  contenutoDiv.classList.remove('hidden');
 
   // Attiva i pulsanti tile per la destinazione (Italia / Estero)
   document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(btn => {
@@ -753,6 +752,7 @@ function calcolaSpedizione() {
 
   const intestazione = creaIntestazione(peso);
   const risultati = tipoDestinazioneSelezionato === 'italia'
+
     ? calcolaTariffeItalia(peso)
     : calcolaTariffeEstero(peso);
 
