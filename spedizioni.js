@@ -1,5 +1,10 @@
 // Prezzi aggiornati ad Aprile 2025
 
+
+// variabili globali
+let tipoDestinazioneSelezionato = 'italia';
+let tipoContenutoSelezionato = 'libro';
+
 const mappaturaNazioni = {
   // Per Pacco Ordinario Internazionale (12 zone)
   ordinario_internazionale: {
@@ -507,29 +512,67 @@ const tariffe = {
   },
 }
 
+function aggiornaDestinazione(tipo) {
+  const sezioneEstero = document.getElementById('sezioneEstero');
+  const contenutoDiv = document.getElementById('contenutoWrapper');
+  const destinazioneSelect = document.getElementById('destinazione');
+  const infoDiv = document.getElementById('infoNazioni');
+  const elencoDiv = document.getElementById('elencoNazioni');
+
+  infoDiv.classList.add('hidden');
+  elencoDiv.innerHTML = '';
+
+  if (tipo === 'italia') {
+    sezioneEstero.classList.add('hidden');
+    destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
+    contenutoDiv.classList.remove('hidden');
+  } else {
+    sezioneEstero.classList.remove('hidden');
+    caricaZoneEstero();
+    contenutoDiv.classList.add('hidden');
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Inizializza gli elementi corretti
+  // Inizializza gli elementi
   const destinazioneSelect = document.getElementById('destinazione');
-  const tipoDestinazioneSelect = document.getElementById('tipoDestinazione');
   const contenutoDiv = document.getElementById('contenutoWrapper');
 
-
-  if (!destinazioneSelect || !tipoDestinazioneSelect || !contenutoDiv) {
+  if (!destinazioneSelect || !contenutoDiv) {
     console.error('Elementi mancanti nel DOM');
     return;
   }
 
-  // Inizializza l'UI
+  // Mostra sezione Italia di default
   destinazioneSelect.innerHTML = '<option value="italia">Italia</option>';
   document.getElementById('sezioneEstero').classList.add('hidden');
-  contenutoDiv.classList.remove('hidden'); // Mostralo di default per Italia
+  contenutoDiv.classList.remove('hidden');
 
-  // Aggiungi gli event listeners corretti
-  tipoDestinazioneSelect.addEventListener('change', gestisciDestinazione);
+  // Attiva i pulsanti tile per la destinazione (Italia / Estero)
+  document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+  
+      tipoDestinazioneSelezionato = btn.dataset.value; // ← aggiorna variabile globale
+      aggiornaDestinazione(tipoDestinazioneSelezionato);
+
+      document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+      
+          tipoContenutoSelezionato = btn.dataset.value;
+        });
+      });
+    });
+  });
+
+  // Altri event listener
   document.getElementById('tipoSpedizioneEstero').addEventListener('change', caricaZoneEstero);
   document.getElementById('calcola').addEventListener('click', calcolaSpedizione);
 });
+
 
 function gestisciDestinazione() {
   const tipo = this.value;
@@ -663,7 +706,7 @@ function cercaZonaPerNazione() {
 }
 
 function calcolaSpedizione() {
-  const tipoDestinazione = document.getElementById('tipoDestinazione').value;
+  const tipoDestinazione = tipoDestinazioneSelezionato;
   const risultatoEl = document.getElementById('risultato');
   risultatoEl.innerHTML = '';
 
@@ -764,7 +807,7 @@ function creaIntestazione(peso) {
     });
     if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
 
-    const tipoContenuto = document.getElementById('tipoContenuto').value;
+    const tipoContenuto = tipoContenutoSelezionato;
 
     if (tipoContenuto === 'libro') {
       const pieghi = tariffe.pieghi_libri.find(m => {
