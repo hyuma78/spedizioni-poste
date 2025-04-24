@@ -1,226 +1,11 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calcolo Spedizioni Italia e Estero</title>
-  <style>
-    /* Gli stili CSS rimangono invariati */
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-
-    .tile-group {
-      margin-bottom: 20px;
-    }
-
-    .tile-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .tile {
-      flex: 1 1 120px;
-      padding: 12px 16px;
-      background: #b8cee4;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: center;
-    }
-
-    .tile:hover {
-      background-color: #3498db;
-      color: #000;
-    }
-
-    .tile.selected {
-      background-color: #3498db;
-      color: white;
-      border-color: #2980b9;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .form-group {
-      margin: 15px 0;
-      transition: all 0.3s ease;
-    }
-
-    .riepilogo {
-      background: #f8f9fa;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .servizio {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .etichetta {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      font-size: 12px;
-      padding: 3px 6px;
-      border-radius: 4px;
-      margin: 0 5px 5px 0;
-    }
-
-    .servizio .etichetta-container {
-      margin-bottom: 10px;
-    }
-
-    .errore {
-      color: #c0392b;
-      background-color: #fceae9;
-      padding: 10px 16px;
-      border-radius: 6px;
-      margin-top: 10px;
-      font-weight: bold;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .errore.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-10px);
-      }
-
-      50% {
-        transform: translateX(10px);
-      }
-
-      75% {
-        transform: translateX(-10px);
-      }
-
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    .errore.shake {
-      animation: shake 0.3s;
-    }
-
-    h1 {
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    label,
-    select,
-    input {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      background: #3498db;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 20px;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #2980b9;
-    }
-
-    #risultato {
-      margin-top: 25px;
-      padding: 15px;
-      background: #ecf0f1;
-      border-radius: 5px;
-      font-weight: bold;
-      color: #2c3e50;
-    }
-
-    .servizio.migliore {
-      border: 2px solid #27ae60;
-      background-color: #eafaf1;
-      position: relative;
-    }
-
-    .servizio.migliore::before {
-      content: "✔ Miglior Prezzo";
-      position: absolute;
-      top: -10px;
-      right: 10px;
-      background: #27ae60;
-      color: white;
-      padding: 2px 6px;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-
-    .etichetta {
-      display: inline-block;
-      background: #3498db;
-      color: white;
-      font-size: 12px;
-      padding: 3px 6px;
-      border-radius: 4px;
-      margin: 0 5px 5px 0;
-    }
-
-    .servizio .etichetta-container {
-      margin-bottom: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <div class="container">
@@ -238,7 +23,7 @@
       </div>
     </div>
 
-    <!-- Sezione Estero (nascosta inizialmente) -->
+    <!-- Sezione Estero -->
     <div class="form-group hidden" id="sezioneEstero">
       <label for="tipoSpedizioneEstero">Tipo Spedizione Estero:</label>
       <select id="tipoSpedizioneEstero">
@@ -247,7 +32,6 @@
         <option value="paccoInt">Pacco Ordinario Internazionale</option>
       </select>
 
-      <!-- Destinazione Specifica per Estero -->
       <div class="form-group">
         <label for="destinazione">Destinazione Specifica:</label>
         <select id="destinazione"></select>
@@ -256,17 +40,14 @@
 
     <div id="infoNazioni" class="form-group hidden">
       <label><strong>Nazioni in questa zona:</strong></label>
-      <div id="elencoNazioni"
-        style="max-height: 150px; overflow-y: auto; background: #f0f0f0; padding: 10px; border-radius: 5px;"></div>
+      <div id="elencoNazioni"></div>
     </div>
 
     <div id="ricercaNazioneWrapper" class="form-group hidden">
       <label for="ricercaNazione"><strong>Cerca una nazione per sapere la zona:</strong></label>
       <input type="text" id="ricercaNazione" placeholder="Es. Stati Uniti">
-      <div id="risultatoZona" style="margin-top: 10px; color: #2c3e50; font-weight: bold;"></div>
+      <div id="risultatoZona"></div>
     </div>
-
-    <!-- PRIMA COSA STAI SPEDENDO -->
 
     <div id="contenutoWrapper" class="form-group">
       <label>📚 Cosa devi spedire?</label>
@@ -276,7 +57,6 @@
       </div>
     </div>
 
-    <!-- POI IL PESO -->
     <div class="form-group">
       <label for="peso">⚖️ Peso (in grammi):</label>
       <input type="number" id="peso" min="1" required>
@@ -292,12 +72,10 @@
 
     <div id="messaggioErrore" class="errore hidden"></div>
 
-    <!-- Pulsante e Risultato -->
     <button id="calcola">Calcola Tariffe</button>
     <div id="risultato"></div>
   </div>
 
   <script src="./spedizioni.js"></script>
 </body>
-
 </html>
