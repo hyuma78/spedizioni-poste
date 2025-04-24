@@ -10,7 +10,7 @@ const mappaturaNazioni = {
     z1: {
       nome: "Zona 1",
       nazioni: [
-        "Austria", 
+        "Austria",
         "Belgio",
         "Bosnia Herzegovina",
         "Canarie (Isole, Extra UE)",
@@ -41,7 +41,7 @@ const mappaturaNazioni = {
         "Spagna",
         "Svezia",
         "Svizzera*",
-        "Ungheria*",  
+        "Ungheria*",
       ]
     },
     z2: {
@@ -298,7 +298,7 @@ const mappaturaNazioni = {
       ]
     },
 
-  // Per Priority Internazionale (3 zone)
+    // Per Priority Internazionale (3 zone)
     priority_internazionale: {
       z1: {
         nome: "Europa",
@@ -314,7 +314,7 @@ const mappaturaNazioni = {
       }
     },
 
-  // Per Raccomandata Internazionale (3 zone)
+    // Per Raccomandata Internazionale (3 zone)
     raccomandata_internazionale: {
       z1: {
         nome: "Europa",
@@ -342,7 +342,7 @@ const tariffe = {
     { fascia_peso: "0-3 Kg", standard: 10.30, ingombrante: 15.30 },
     { fascia_peso: "3-5 Kg", standard: 12.20, ingombrante: 17.20 },
     { fascia_peso: "5-10 Kg", standard: 14.30, ingombrante: 19.30 },
-    { fascia_peso: "10-20 Kg", standard: 18.30, ingombrante: 23.30}
+    { fascia_peso: "10-20 Kg", standard: 18.30, ingombrante: 23.30 }
   ],
   pieghi_libri: [
     { fascia_peso: "fino 2 Kg", non_tracciabile: 1.35, tracciabile: 4.70, tracciabile_avviso: 5.70 },
@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
-  
+
       tipoDestinazioneSelezionato = btn.dataset.value; // ← aggiorna variabile globale
       aggiornaDestinazione(tipoDestinazioneSelezionato);
 
@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
           document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(b => b.classList.remove('selected'));
           btn.classList.add('selected');
-      
+
           tipoContenutoSelezionato = btn.dataset.value;
         });
       });
@@ -595,7 +595,6 @@ function gestisciDestinazione() {
     contenutoDiv.classList.add('hidden'); // Nasconde tipo contenuto
   }
 }
-
 
 function caricaZoneEstero() {
   const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
@@ -700,8 +699,8 @@ function cercaZonaPerNazione() {
   }
 
   risultato.innerHTML = risultati.length > 0
-  ? risultati.join('<br>')
-  : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
+    ? risultati.join('<br>')
+    : `⚠️ Nessuna zona trovata per "<strong>${input}</strong>"`;
 }
 
 function mostraErrore(messaggio) {
@@ -799,7 +798,7 @@ function calcolaSpedizione() {
 function creaIntestazione(peso) {
   const destinazione = document.getElementById('destinazione').selectedOptions[0].text;
   const ingombrante = document.getElementById('dimensioni').value === 'si';
-  
+
   return `
     <div class="riepilogo">
       <h3>Riepilogo Parametri:</h3>
@@ -807,78 +806,78 @@ function creaIntestazione(peso) {
       <p>⚖️ ${peso}g • 📦 ${ingombrante ? 'Ingombrante' : 'Standard'}</p>
     </div>
     <hr>`;
-  }
+}
 
-  function parseRange(fascia) {
-    const cleaned = fascia.toLowerCase()
+function parseRange(fascia) {
+  const cleaned = fascia.toLowerCase()
     .replace('kg', '000')
     .replace('g', '')
     .replace('fino ', '')
     .replace(/\s/g, '');
 
-    return cleaned.includes('-') 
-    ? cleaned.split('-').map(v => parseInt(v)) 
+  return cleaned.includes('-')
+    ? cleaned.split('-').map(v => parseInt(v))
     : [0, parseInt(cleaned)];
-  }
+}
 
-  function calcolaTariffeItalia(peso) {
-    const ingombrante = document.getElementById('dimensioni').value === 'si';
-    const opzioni = [];
+function calcolaTariffeItalia(peso) {
+  const ingombrante = document.getElementById('dimensioni').value === 'si';
+  const opzioni = [];
 
-    const crea = (nome, prezzo) => opzioni.push({
-      nome,
-      prezzo,
-      html: creaServizio(nome, prezzo)
-    });
+  const crea = (nome, prezzo) => opzioni.push({
+    nome,
+    prezzo,
+    html: creaServizio(nome, prezzo)
+  });
 
-    const posta1 = tariffe.posta1.find(m => {
+  const posta1 = tariffe.posta1.find(m => {
+    const [min, max] = parseRange(m.fascia_peso);
+    return peso >= min && peso <= max;
+  });
+  if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
+
+  const tipoContenuto = tipoContenutoSelezionato;
+
+  if (tipoContenuto === 'libro') {
+    const pieghi = tariffe.pieghi_libri.find(m => {
       const [min, max] = parseRange(m.fascia_peso);
       return peso >= min && peso <= max;
     });
-    if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
-
-    const tipoContenuto = tipoContenutoSelezionato;
-
-    if (tipoContenuto === 'libro') {
-      const pieghi = tariffe.pieghi_libri.find(m => {
-        const [min, max] = parseRange(m.fascia_peso);
-        return peso >= min && peso <= max;
+    if (pieghi) {
+      ['non_tracciabile', 'tracciabile', 'tracciabile_avviso'].forEach(tipo => {
+        const label = {
+          non_tracciabile: '📚 Pieghi di Libri – Non Tracciabile',
+          tracciabile: '📚 Pieghi di Libri – Tracciabile',
+          tracciabile_avviso: '📚 Pieghi di Libri – Tracciabile + Avviso'
+        }[tipo];
+        crea(label, pieghi[tipo]);
       });
-      if (pieghi) {
-        ['non_tracciabile', 'tracciabile', 'tracciabile_avviso'].forEach(tipo => {
-          const label = {
-            non_tracciabile: '📚 Pieghi di Libri – Non Tracciabile',
-            tracciabile: '📚 Pieghi di Libri – Tracciabile',
-            tracciabile_avviso: '📚 Pieghi di Libri – Tracciabile + Avviso'
-          }[tipo];
-          crea(label, pieghi[tipo]);
-        });
-      }
     }
-
-    const pacco = tariffe.pacco_ordinario.find(m => {
-      const [min, max] = parseRange(m.fascia_peso);
-      return peso >= min && peso <= max;
-    });
-    if (pacco) crea('📦 Pacco Ordinario', ingombrante ? pacco.ingombrante : pacco.standard);
-
-    const raccomandata = tariffe.raccomandata.find(m => {
-      const [min, max] = parseRange(m.fascia_peso);
-      return peso >= min && peso <= max;
-    });
-    if (raccomandata) crea('📨 Raccomandata', raccomandata.prezzo);
-
-    return opzioni;
   }
 
-  function calcolaTariffeEstero(peso) {
-    const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
-    const zona = document.getElementById('destinazione').value.replace('estero', 'z');
+  const pacco = tariffe.pacco_ordinario.find(m => {
+    const [min, max] = parseRange(m.fascia_peso);
+    return peso >= min && peso <= max;
+  });
+  if (pacco) crea('📦 Pacco Ordinario', ingombrante ? pacco.ingombrante : pacco.standard);
 
-    const lista = tariffe[
+  const raccomandata = tariffe.raccomandata.find(m => {
+    const [min, max] = parseRange(m.fascia_peso);
+    return peso >= min && peso <= max;
+  });
+  if (raccomandata) crea('📨 Raccomandata', raccomandata.prezzo);
+
+  return opzioni;
+}
+
+function calcolaTariffeEstero(peso) {
+  const tipoSpedizione = document.getElementById('tipoSpedizioneEstero').value;
+  const zona = document.getElementById('destinazione').value.replace('estero', 'z');
+
+  const lista = tariffe[
     tipoSpedizione === 'paccoInt'
-    ? 'ordinario_internazionale'
-    : `${tipoSpedizione}_internazionale`
+      ? 'ordinario_internazionale'
+      : `${tipoSpedizione}_internazionale`
   ][zona];
 
   if (!lista) return [];
@@ -910,13 +909,13 @@ function creaServizio(nome, prezzo) {
   const isPieghiNonTracciabile = (
     lower.includes("pieghi di libri") &&
     lower.includes("non tracciabile")
-    );
+  );
 
   const isPieghiTracciabile = (
     lower.includes("pieghi di libri") &&
     !lower.includes("non tracciabile") &&
     (lower.includes("tracciabile") || lower.includes("avviso"))
-    );
+  );
 
   const isRaccomandata = lower.includes("raccomandata");
   const isPacco = lower.includes("pacco ordinario");
@@ -935,8 +934,8 @@ function creaServizio(nome, prezzo) {
 
   const tagUnici = [...new Set(tags)];
   const tagHTML = tagUnici.length
-  ? `<div class="etichetta-container">${tagUnici.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
-  : '';
+    ? `<div class="etichetta-container">${tagUnici.map(t => `<span class="etichetta">${t}</span>`).join('')}</div>`
+    : '';
 
   return `
     <div class="servizio">
@@ -944,4 +943,4 @@ function creaServizio(nome, prezzo) {
       <h4>${nome}</h4>
       <p>€${prezzo.toFixed(2)}</p>
     </div>`;
-  }
+}
