@@ -104,8 +104,8 @@ const tariffe = {
     { fascia_peso: "10-20 Kg",  standard: 18.30, ingombrante: 23.30 }
   ],
   pieghi_libri: [
-    { fascia_peso: "fino 2 Kg", non_tracciabile: 1.35, tracciabile: 4.70, tracciabile_avviso: 5.70 },
-    { fascia_peso: "fino 5 Kg", non_tracciabile: 3.95, tracciabile: 7.30, tracciabile_avviso: 8.30 }
+    { fascia_peso: "fino 2 Kg", non_tracciabile: 1.45, tracciabile: 4.80, tracciabile_avviso: 5.85 },
+    { fascia_peso: "fino 5 Kg", non_tracciabile: 3.95, tracciabile: 7.30, tracciabile_avviso: 8.35 }
   ],
   raccomandata: [
     { fascia_peso: "fino 20g",    prezzo: 6.00 },
