@@ -412,6 +412,13 @@ function cercaZonaPerNazione() {
 
   if (!input) { risultato.innerHTML = ''; return; }
 
+  // Mappa esplicita codiceZona → valore select (evita bug con replace)
+  const zonaToSelect = {
+    z1: 'estero1', z2: 'estero2', z3: 'estero3', z3bis: 'estero3bis',
+    z4: 'estero4', z4bis: 'estero4bis', z4tris: 'estero4tris', z4quater: 'estero4quater',
+    z5: 'estero5', z6: 'estero6', z7: 'estero7', z8: 'estero8'
+  };
+
   const trovati = [];
   const zone = mappaturaNazioni.ordinario_internazionale;
 
@@ -419,7 +426,7 @@ function cercaZonaPerNazione() {
     if (!Array.isArray(zona.nazioni)) continue;
     for (const nazione of zona.nazioni) {
       if (nazione.toLowerCase().includes(input)) {
-        trovati.push({ nazione, zona, codiceZona });
+        trovati.push({ nazione, zonaNome: zona.nome, valoreSelect: zonaToSelect[codiceZona] });
       }
     }
   }
@@ -429,41 +436,40 @@ function cercaZonaPerNazione() {
     return;
   }
 
-  const chipsHTML = trovati.map(({ nazione, zona, codiceZona }) => {
-    // Evidenzia la parte cercata nel nome nazione
-    const regex = new RegExp(`(${input})`, 'gi');
-    const nomeEvidenziato = nazione.replace(regex, '<mark>$1</mark>');
-    const valoreSelect = 'estero' + codiceZona.replace('z', '');
-    return `
-      <button type="button" class="zona-chip" data-zona="${valoreSelect}">
-        <span class="zona-chip-nazione">${nomeEvidenziato}</span>
-        <span class="zona-chip-zona">${zona.nome}</span>
-      </button>`;
-  }).join('');
+  // Evidenzia la parte cercata
+  const regex = new RegExp(`(${input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+
+  const chipsHTML = trovati.map(({ nazione, zonaNome, valoreSelect }) => `
+    <button type="button" class="zona-chip" data-zona="${valoreSelect}" data-nome="${nazione}" data-zona-nome="${zonaNome}">
+      <span class="zona-chip-nazione">${nazione.replace(regex, '<mark>$1</mark>')}</span>
+      <span class="zona-chip-zona">${zonaNome}</span>
+    </button>`
+  ).join('');
 
   risultato.innerHTML = `<div class="zona-chips">${chipsHTML}</div>`;
-
-  // Listener su ogni chip
-  risultato.querySelectorAll('.zona-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-      const valoreZona = chip.dataset.zona;
-      const nomeNazione = chip.querySelector('.zona-chip-nazione').textContent;
-      const nomeZona    = chip.querySelector('.zona-chip-zona').textContent;
-
-      // Seleziona la zona nel select
-      const selectDest = document.getElementById('destinazione');
-      selectDest.value = valoreZona;
-      selectDest.dispatchEvent(new Event('change'));
-
-      // Svuota l'input e mostra conferma
-      document.getElementById('ricercaNazione').value = '';
-      risultato.innerHTML = `
-        <div class="zona-confermata">
-          ✅ <strong>${nomeNazione}</strong> — zona impostata su <strong>${nomeZona}</strong>
-        </div>`;
-    });
-  });
 }
+
+// Delegazione eventi sul contenitore risultato — non viene persa al cambio innerHTML
+document.addEventListener('click', e => {
+  const chip = e.target.closest('.zona-chip');
+  if (!chip) return;
+
+  const valoreZona = chip.dataset.zona;
+  const nomeNazione = chip.dataset.nome;
+  const nomeZona    = chip.dataset.zonaNome;
+
+  const selectDest = document.getElementById('destinazione');
+  if (!selectDest || !valoreZona) return;
+
+  selectDest.value = valoreZona;
+  selectDest.dispatchEvent(new Event('change'));
+
+  document.getElementById('ricercaNazione').value = '';
+  document.getElementById('risultatoZona').innerHTML = `
+    <div class="zona-confermata">
+      ✅ <strong>${nomeNazione}</strong> — zona impostata su <strong>${nomeZona}</strong>
+    </div>`;
+});
 
 function mostraErrore(msg) {
   const el = document.getElementById('messaggioErrore');
