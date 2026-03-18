@@ -567,11 +567,26 @@ function calcolaSpedizione() {
 }
 
 function parseRange(fascia) {
-  const cleaned = fascia.toLowerCase()
-    .replace('kg', '000').replace('g', '').replace('fino ', '').replace(/\s/g, '');
-  return cleaned.includes('-')
-    ? cleaned.split('-').map(v => parseInt(v))
-    : [0, parseInt(cleaned)];
+  // Normalizza: minuscolo, rimuovi spazi
+  const s = fascia.toLowerCase().replace(/\s/g, '');
+
+  // Converte una singola stringa numerica con unità in grammi
+  function toGrams(val) {
+    if (val.includes('kg')) return parseFloat(val) * 1000;
+    if (val.includes('g'))  return parseFloat(val);
+    // Nessuna unità: se la fascia originale contiene 'kg', il numero è in kg
+    return fascia.toLowerCase().includes('kg') ? parseFloat(val) * 1000 : parseFloat(val);
+  }
+
+  // Rimuovi "fino"
+  const clean = s.replace('fino', '');
+
+  if (clean.includes('-')) {
+    const parts = clean.split('-');
+    return [toGrams(parts[0]), toGrams(parts[1])];
+  } else {
+    return [0, toGrams(clean)];
+  }
 }
 
 function calcolaTariffeItalia(peso) {
@@ -617,7 +632,7 @@ function calcolaTariffeItalia(peso) {
     crea('🚚 Spediamo.it (+ IVA)', spediamo.lordo);
     crea('🚚 Spediamo.it (esente IVA)', spediamo.netto);
   }
-  
+
   return opzioni;
 }
 
