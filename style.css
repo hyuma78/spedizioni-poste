@@ -608,6 +608,12 @@ select:focus { outline: none; border-color: var(--red); }
   margin-top: 4px;
 }
 
+.servizi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 .riepilogo {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -696,11 +702,10 @@ select:focus { outline: none; border-color: var(--red); }
   background: var(--surface);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 14px 18px;
+  padding: 12px 14px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  gap: 8px;
   box-shadow: var(--shadow-sm);
   transition: border-color .2s, box-shadow .2s;
   animation: fadeSlideIn .3s ease both;
@@ -714,15 +719,23 @@ select:focus { outline: none; border-color: var(--red); }
 .servizio-left { flex: 1; }
 
 .servizio-nome {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--ink);
-  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.servizio-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
 }
 
 .servizio-prezzo {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
@@ -732,17 +745,16 @@ select:focus { outline: none; border-color: var(--red); }
 .etichetta-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 6px;
+  gap: 4px;
 }
 
 .etichetta {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 20px;
   letter-spacing: .02em;
   background: var(--bg);
@@ -760,15 +772,16 @@ select:focus { outline: none; border-color: var(--red); }
 }
 
 .migliore-badge {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--green);
   background: #d4f5e9;
   border: 1px solid #a7e7cc;
-  padding: 3px 8px;
+  padding: 2px 7px;
   border-radius: 20px;
   white-space: nowrap;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 /* ─── FOOTER ─── */
@@ -791,4 +804,5 @@ select:focus { outline: none; border-color: var(--red); }
   .select-grid, .peso-grid { grid-template-columns: 1fr; }
   .header-sub { display: none; }
   .card-consigliata-prezzo { font-size: 28px; }
+  .servizi-grid { grid-template-columns: 1fr; }
 }

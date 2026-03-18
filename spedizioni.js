@@ -557,6 +557,7 @@ function calcolaSpedizione() {
 
   // Lista tutti i servizi
   html += `<div class="risultati-lista-title">Tutte le opzioni disponibili</div>`;
+  html += `<div class="servizi-grid">`;
 
   const prezzoMinimo = Math.min(...risultati.map(r => r.prezzo));
 
@@ -564,6 +565,8 @@ function calcolaSpedizione() {
     const isMigliore = r === migliore;
     html += creaServizio(r.nome, r.prezzo, isMigliore, prezzoMinimo);
   });
+
+  html += `</div>`;
 
   risultatoEl.innerHTML = html;
   risultatoEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -691,12 +694,12 @@ function creaServizio(nome, prezzo, isMigliore = false, prezzoMinimo = null) {
 
   return `
     <div class="servizio${isMigliore ? ' migliore' : ''}">
-      <div class="servizio-left">
-        ${tagsHTML}
-        <div class="servizio-nome">${nome}</div>
+      ${tagsHTML}
+      <div class="servizio-nome">${nome}</div>
+      <div class="servizio-bottom">
         <div class="servizio-prezzo">€${prezzo.toFixed(2)}</div>
+        ${badgeMigliore}
       </div>
-      ${badgeMigliore}
     </div>
   `;
 }
