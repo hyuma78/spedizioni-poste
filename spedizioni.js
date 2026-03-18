@@ -558,9 +558,11 @@ function calcolaSpedizione() {
   // Lista tutti i servizi
   html += `<div class="risultati-lista-title">Tutte le opzioni disponibili</div>`;
 
+  const prezzoMinimo = Math.min(...risultati.map(r => r.prezzo));
+
   risultati.forEach(r => {
     const isMigliore = r === migliore;
-    html += creaServizio(r.nome, r.prezzo, isMigliore);
+    html += creaServizio(r.nome, r.prezzo, isMigliore, prezzoMinimo);
   });
 
   risultatoEl.innerHTML = html;
@@ -662,7 +664,7 @@ function calcolaTariffeEstero(peso) {
   return [{ nome, prezzo: match.prezzo || match.standard }];
 }
 
-function creaServizio(nome, prezzo, isMigliore = false) {
+function creaServizio(nome, prezzo, isMigliore = false, prezzoMinimo = null) {
   const lower = nome.toLowerCase();
 
   const isPieghiNT  = lower.includes('pieghi') && lower.includes('non tracciabile');
@@ -672,8 +674,10 @@ function creaServizio(nome, prezzo, isMigliore = false) {
   const isPosta1    = lower.includes('posta 1');
   const isSpediamo  = lower.includes('spediamo');
 
+  const isEconomica = prezzoMinimo !== null && prezzo === prezzoMinimo;
+
   const etichette = [];
-  if (isPieghiNT || isPosta1) etichette.push({ cls: 'economica', text: '💰 Economica' });
+  if (isEconomica) etichette.push({ cls: 'economica', text: '💰 Economica' });
   if (isPieghiT || isRacc || isPacco || isSpediamo) {
     etichette.push({ cls: 'tracciabile', text: '📍 Tracciabile' });
     etichette.push({ cls: 'sicura',      text: '🔐 Sicura' });
