@@ -525,7 +525,8 @@ function calcolaSpedizione() {
   const affidabili = risultati.filter(r => {
     const n = r.nome.toLowerCase();
     return (n.includes('pieghi') && !n.includes('non tracciabile')) ||
-           n.includes('raccomandata') || n.includes('pacco ordinario');
+           n.includes('raccomandata') || n.includes('pacco ordinario') ||
+           (n.includes('spediamo') && n.includes('iva'));
   });
   const migliore = (affidabili.length > 0 ? affidabili : risultati)
     .reduce((a, b) => a.prezzo < b.prezzo ? a : b);
