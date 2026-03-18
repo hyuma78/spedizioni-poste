@@ -1,5 +1,5 @@
 /* ============================================
-   Calcolo Spedizioni— Redesign Marzo 2026
+   SpediCalc — Redesign 2025
    Tema: Rosso/Bianco elegante, stile postale moderno
    ============================================ */
 
@@ -208,6 +208,18 @@ body {
   font-size: 14px;
   font-weight: 500;
   color: var(--ink);
+}
+
+.tile-hint {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-light);
+  line-height: 1.3;
+}
+
+.tile.selected .tile-hint {
+  color: var(--red-dark);
+  opacity: .8;
 }
 
 .tile:hover {
