@@ -304,7 +304,23 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('tipoSpedizioneEstero').addEventListener('change', caricaZoneEstero);
 
   // Destinazione change
-  document.getElementById('destinazione').addEventListener('change', mostraNazioniZona);
+  document.getElementById('destinazione').addEventListener('change', () => {
+    // Reset lista collassata quando cambia zona
+    const elencoDiv = document.getElementById('elencoNazioni');
+    const toggle    = document.getElementById('nazioniToggle');
+    elencoDiv.classList.add('collapsed');
+    toggle && toggle.classList.remove('open');
+    mostraNazioniZona();
+  });
+
+  // Toggle collassabile nazioni
+  document.getElementById('nazioniToggle').addEventListener('click', () => {
+    const elencoDiv = document.getElementById('elencoNazioni');
+    const toggle    = document.getElementById('nazioniToggle');
+    const isOpen    = !elencoDiv.classList.contains('collapsed');
+    elencoDiv.classList.toggle('collapsed', isOpen);
+    toggle.classList.toggle('open', !isOpen);
+  });
 
   // Ricerca nazione
   document.getElementById('ricercaNazione').addEventListener('input', cercaZonaPerNazione);
@@ -320,7 +336,11 @@ function aggiornaDestinazione(tipo) {
   const contenutoDiv  = document.getElementById('contenutoWrapper');
 
   document.getElementById('infoNazioni').classList.add('hidden');
-  document.getElementById('elencoNazioni').innerHTML = '';
+  const elencoDiv = document.getElementById('elencoNazioni');
+  elencoDiv.innerHTML = '';
+  elencoDiv.classList.add('collapsed');
+  const toggle = document.getElementById('nazioniToggle');
+  toggle && toggle.classList.remove('open');
 
   if (tipo === 'italia') {
     sezioneEstero.classList.add('hidden');
@@ -373,12 +393,15 @@ function mostraNazioniZona() {
   const zonaSelezionata = document.getElementById('destinazione').value.replace('estero', 'z');
   const infoDiv         = document.getElementById('infoNazioni');
   const elencoDiv       = document.getElementById('elencoNazioni');
+  const toggle          = document.getElementById('nazioniToggle');
 
   if (tipoSpedizione !== 'paccoInt') { infoDiv.classList.add('hidden'); return; }
 
   const nazioni = mappaturaNazioni.ordinario_internazionale[zonaSelezionata]?.nazioni;
   if (nazioni?.length > 0) {
     elencoDiv.innerHTML = nazioni.join(' · ');
+    elencoDiv.classList.add('collapsed');   // sempre chiusa al cambio zona
+    toggle && toggle.classList.remove('open');
     infoDiv.classList.remove('hidden');
   }
 }

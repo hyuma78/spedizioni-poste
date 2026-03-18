@@ -300,59 +300,90 @@ select:focus { outline: none; border-color: var(--red); }
 
 /* ─── NAZIONI BOX ─── */
 .nazioni-box {
-  background: var(--bg);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 14px 16px;
-  margin-top: 4px;
-  animation: fadeSlideIn .3s ease;
+  margin-top: 12px;
+  overflow: hidden;
 }
 
-.nazioni-header {
+.nazioni-toggle {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  padding: 11px 14px;
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
   font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
   color: var(--ink-mid);
+  transition: background .2s;
 }
+
+.nazioni-toggle:hover { background: #eceae6; }
+
+.toggle-arrow {
+  font-size: 14px;
+  transition: transform .25s ease;
+  display: inline-block;
+}
+
+.nazioni-toggle.open .toggle-arrow { transform: rotate(180deg); }
 
 .nazioni-list {
   font-size: 13px;
   color: var(--ink-light);
-  line-height: 1.6;
+  line-height: 1.7;
+  padding: 0 14px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
 }
 
-/* ─── SEARCH ─── */
-.search-wrap {
-  margin-top: 12px;
+.nazioni-list:not(.collapsed) {
+  max-height: 400px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
 }
 
-.search-wrap label {
+/* ─── SEARCH NAZIONE (prominent) ─── */
+.search-wrap-prominent {
+  background: var(--red-light);
+  border: 1.5px solid var(--red-mid);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.search-wrap-prominent label {
   display: block;
   font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-light);
-  letter-spacing: .06em;
+  font-weight: 700;
+  color: var(--red-dark);
+  letter-spacing: .05em;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.search-wrap input {
+.search-wrap-prominent input {
   display: block;
   width: 100%;
   padding: 10px 14px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--red-mid);
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  transition: border-color .2s;
+  background: white;
+  color: var(--ink);
+  transition: border-color .2s, box-shadow .2s;
 }
 
-.search-wrap input:focus {
+.search-wrap-prominent input:focus {
   outline: none;
   border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(208,2,27,.1);
 }
 
 .zona-result {
@@ -361,6 +392,7 @@ select:focus { outline: none; border-color: var(--red); }
   color: var(--ink);
   line-height: 1.7;
 }
+
 
 /* ─── PESO SECTION ─── */
 .step-peso { /* same as .step */ }

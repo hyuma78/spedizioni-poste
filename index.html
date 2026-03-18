@@ -26,7 +26,7 @@
           <span class="logo-subtext">Spedizioni</span>
         </div>
       </div>
-      <span class="header-sub">Tariffe aggiornate Gennaio 2026</span>
+      <span class="header-sub">Tariffe aggiornate Aprile 2025</span>
     </div>
   </header>
 
@@ -63,33 +63,34 @@
         </div>
       </div>
 
-      <div class="select-grid">
-        <div class="select-wrap">
-          <label for="tipoSpedizioneEstero">Servizio</label>
-          <select id="tipoSpedizioneEstero">
-            <option value="priority">✈️ Priority Internazionale</option>
-            <option value="raccomandata">📨 Raccomandata Internazionale</option>
-            <option value="paccoInt">📦 Pacco Ordinario Internazionale</option>
-          </select>
-        </div>
-        <div class="select-wrap">
-          <label for="destinazione">Zona di destinazione</label>
-          <select id="destinazione"></select>
-        </div>
+      <div class="select-wrap" style="margin-bottom:16px">
+        <label for="tipoSpedizioneEstero">Servizio</label>
+        <select id="tipoSpedizioneEstero">
+          <option value="priority">✈️ Priority Internazionale</option>
+          <option value="raccomandata">📨 Raccomandata Internazionale</option>
+          <option value="paccoInt">📦 Pacco Ordinario Internazionale</option>
+        </select>
       </div>
 
-      <div id="infoNazioni" class="nazioni-box hidden">
-        <div class="nazioni-header">
-          <span>🌐</span>
-          <strong>Nazioni in questa zona</strong>
-        </div>
-        <div id="elencoNazioni" class="nazioni-list"></div>
-      </div>
-
-      <div id="ricercaNazioneWrapper" class="search-wrap hidden">
-        <label for="ricercaNazione">🔍 Cerca una nazione</label>
-        <input type="text" id="ricercaNazione" placeholder="Es. Francia, Giappone...">
+      <!-- Search nazione — visibile solo per paccoInt -->
+      <div id="ricercaNazioneWrapper" class="search-wrap-prominent hidden">
+        <label for="ricercaNazione">🔍 Non sai la zona? Cerca la nazione</label>
+        <input type="text" id="ricercaNazione" placeholder="Es. Francia, Giappone, Stati Uniti…">
         <div id="risultatoZona" class="zona-result"></div>
+      </div>
+
+      <div class="select-wrap">
+        <label for="destinazione">Zona di destinazione</label>
+        <select id="destinazione"></select>
+      </div>
+
+      <!-- Lista nazioni collassabile -->
+      <div id="infoNazioni" class="nazioni-box hidden">
+        <button type="button" class="nazioni-toggle" id="nazioniToggle">
+          <span>🌐 Vedi tutte le nazioni di questa zona</span>
+          <span class="toggle-arrow">▾</span>
+        </button>
+        <div id="elencoNazioni" class="nazioni-list collapsed"></div>
       </div>
     </section>
 
@@ -153,7 +154,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Tariffe Poste Italiane — Aggiornate a Gennaio 2026</p>
+    <p>Tariffe Poste Italiane — Aggiornate ad Aprile 2025 · Non ufficiale</p>
   </footer>
 
   <script src="./spedizioni.js"></script>
