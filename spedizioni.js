@@ -1,4 +1,4 @@
-// Prezzi aggiornati ad Aprile 2025
+// Prezzi aggiornati a Gennaio 2026
 
 // variabili globali
 let tipoDestinazioneSelezionato = null;
