@@ -526,7 +526,7 @@ function calcolaSpedizione() {
     const n = r.nome.toLowerCase();
     return (n.includes('pieghi') && !n.includes('non tracciabile')) ||
            n.includes('raccomandata') || n.includes('pacco ordinario') ||
-           (n.includes('spediamo') && n.includes('iva'));
+           n.includes('spediamo');
   });
   const migliore = (affidabili.length > 0 ? affidabili : risultati)
     .reduce((a, b) => a.prezzo < b.prezzo ? a : b);
@@ -630,8 +630,7 @@ function calcolaTariffeItalia(peso) {
     return peso >= min && peso <= max;
   });
   if (spediamo) {
-    crea('🚚 Spediamo.it (+ IVA)', spediamo.lordo);
-    crea('🚚 Spediamo.it (esente IVA)', spediamo.netto);
+    crea(`🚚 Spediamo.it (es. IVA: €${spediamo.netto.toFixed(2)})`, spediamo.lordo);
   }
 
   return opzioni;
@@ -674,8 +673,7 @@ function creaServizio(nome, prezzo, isMigliore = false) {
   const isSpediamo  = lower.includes('spediamo');
 
   const etichette = [];
-  if (isPieghiNT || isPosta1)                      etichette.push({ cls: 'economica',   text: '💰 Economica' });
-  if (isSpediamo)                                  etichette.push({ cls: 'economica',   text: '💰 Economica' });
+  if (isPieghiNT || isPosta1) etichette.push({ cls: 'economica', text: '💰 Economica' });
   if (isPieghiT || isRacc || isPacco || isSpediamo) {
     etichette.push({ cls: 'tracciabile', text: '📍 Tracciabile' });
     etichette.push({ cls: 'sicura',      text: '🔐 Sicura' });
