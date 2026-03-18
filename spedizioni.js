@@ -617,7 +617,7 @@ function calcolaTariffeItalia(peso) {
     crea('🚚 Spediamo.it (+ IVA)', spediamo.lordo);
     crea('🚚 Spediamo.it (esente IVA)', spediamo.netto);
   }
-
+  
   return opzioni;
 }
 
