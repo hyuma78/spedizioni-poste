@@ -3,78 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calcolo Spedizioni Italia e Estero</title>
+  <title>Calcolo Spedizioni — Poste Italiane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
-    <h1>Calcolo Tariffe Spedizioni</h1>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">✉</span>
+        <span class="logo-text">SpediCalc</span>
+      </div>
+      <span class="header-sub">Tariffe aggiornate Aprile 2025</span>
+    </div>
+  </header>
 
-    <!-- Tipo Destinazione -->
-    <div class="form-group">
-      <label for="tipoDestinazione">Destinazione:</label>
-      <div id="tipoDestinazioneWrapper" class="tile-group">
-        <label>📍 Dove vuoi spedire?</label>
-        <div class="tile-row">
-          <button type="button" class="tile" data-value="italia">🇮🇹 Italia</button>
-          <button type="button" class="tile" data-value="estero">🌍 Estero</button>
+  <main class="container">
+
+    <!-- Step 1: Destinazione -->
+    <section class="step" id="step-destinazione">
+      <div class="step-header">
+        <span class="step-number">01</span>
+        <div>
+          <h2>Dove vuoi spedire?</h2>
+          <p class="step-desc">Seleziona la destinazione del pacco</p>
         </div>
       </div>
-    </div>
-
-    <!-- Sezione Estero -->
-    <div class="form-group hidden" id="sezioneEstero">
-      <label for="tipoSpedizioneEstero">Tipo Spedizione Estero:</label>
-      <select id="tipoSpedizioneEstero">
-        <option value="priority">Priority Internazionale</option>
-        <option value="raccomandata">Raccomandata Internazionale</option>
-        <option value="paccoInt">Pacco Ordinario Internazionale</option>
-      </select>
-
-      <div class="form-group">
-        <label for="destinazione">Destinazione Specifica:</label>
-        <select id="destinazione"></select>
+      <div class="tile-row" id="tipoDestinazioneWrapper">
+        <button type="button" class="tile tile-lg" data-value="italia">
+          <span class="tile-icon">🇮🇹</span>
+          <span class="tile-label">Italia</span>
+        </button>
+        <button type="button" class="tile tile-lg" data-value="estero">
+          <span class="tile-icon">🌍</span>
+          <span class="tile-label">Estero</span>
+        </button>
       </div>
-    </div>
+    </section>
 
-    <div id="infoNazioni" class="form-group hidden">
-      <label><strong>Nazioni in questa zona:</strong></label>
-      <div id="elencoNazioni"></div>
-    </div>
-
-    <div id="ricercaNazioneWrapper" class="form-group hidden">
-      <label for="ricercaNazione"><strong>Cerca una nazione per sapere la zona:</strong></label>
-      <input type="text" id="ricercaNazione" placeholder="Es. Stati Uniti">
-      <div id="risultatoZona"></div>
-    </div>
-
-    <div id="contenutoWrapper" class="form-group">
-      <label>📚 Cosa devi spedire?</label>
-      <div id="tipoContenutoWrapper" class="tile-row">
-        <button type="button" class="tile" data-value="libro">📚 Libri / materiale editoriale</button>
-        <button type="button" class="tile" data-value="generico">📦 Altro (giocattoli, elettronica, ecc)</button>
+    <!-- Step 2: Opzioni Estero (hidden by default) -->
+    <section class="step hidden" id="sezioneEstero">
+      <div class="step-header">
+        <span class="step-number">02</span>
+        <div>
+          <h2>Tipo spedizione internazionale</h2>
+          <p class="step-desc">Scegli il servizio e la destinazione</p>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="peso">⚖️ Peso (in grammi):</label>
-      <input type="number" id="peso" min="1" required>
-    </div>
+      <div class="select-grid">
+        <div class="select-wrap">
+          <label for="tipoSpedizioneEstero">Servizio</label>
+          <select id="tipoSpedizioneEstero">
+            <option value="priority">✈️ Priority Internazionale</option>
+            <option value="raccomandata">📨 Raccomandata Internazionale</option>
+            <option value="paccoInt">📦 Pacco Ordinario Internazionale</option>
+          </select>
+        </div>
+        <div class="select-wrap">
+          <label for="destinazione">Zona di destinazione</label>
+          <select id="destinazione"></select>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="dimensioni">Formato Ingombrante?</label>
-      <select id="dimensioni">
-        <option value="no">No</option>
-        <option value="si">Sì</option>
-      </select>
-    </div>
+      <div id="infoNazioni" class="nazioni-box hidden">
+        <div class="nazioni-header">
+          <span>🌐</span>
+          <strong>Nazioni in questa zona</strong>
+        </div>
+        <div id="elencoNazioni" class="nazioni-list"></div>
+      </div>
+
+      <div id="ricercaNazioneWrapper" class="search-wrap hidden">
+        <label for="ricercaNazione">🔍 Cerca una nazione</label>
+        <input type="text" id="ricercaNazione" placeholder="Es. Francia, Giappone...">
+        <div id="risultatoZona" class="zona-result"></div>
+      </div>
+    </section>
+
+    <!-- Step 2b / Step 3: Contenuto (solo Italia) -->
+    <section class="step hidden" id="contenutoWrapper">
+      <div class="step-header">
+        <span class="step-number" id="stepNumeroContenuto">02</span>
+        <div>
+          <h2>Cosa spedisci?</h2>
+          <p class="step-desc">Il tipo di contenuto influenza le tariffe disponibili</p>
+        </div>
+      </div>
+      <div class="tile-row" id="tipoContenutoWrapper">
+        <button type="button" class="tile tile-lg" data-value="libro">
+          <span class="tile-icon">📚</span>
+          <span class="tile-label">Libri / Materiale editoriale</span>
+        </button>
+        <button type="button" class="tile tile-lg" data-value="generico">
+          <span class="tile-icon">📦</span>
+          <span class="tile-label">Altro (giocattoli, elettronica…)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Step 3/4: Peso e dimensioni -->
+    <section class="step step-peso">
+      <div class="step-header">
+        <span class="step-number" id="stepNumeroPeso">03</span>
+        <div>
+          <h2>Peso e dimensioni</h2>
+          <p class="step-desc">Inserisci i dettagli fisici del pacco</p>
+        </div>
+      </div>
+      <div class="peso-grid">
+        <div class="input-wrap">
+          <label for="peso">Peso in grammi</label>
+          <div class="input-with-unit">
+            <input type="number" id="peso" min="1" placeholder="Es. 500">
+            <span class="unit-badge">g</span>
+          </div>
+        </div>
+        <div class="input-wrap">
+          <label for="dimensioni">Formato ingombrante?</label>
+          <div class="toggle-row">
+            <button type="button" class="toggle-btn selected" data-value="no">No</button>
+            <button type="button" class="toggle-btn" data-value="si">Sì</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div id="messaggioErrore" class="errore hidden"></div>
 
-    <button id="calcola">Calcola Tariffe</button>
+    <button id="calcola" class="btn-calcola">
+      <span>Calcola tariffe</span>
+      <span class="btn-arrow">→</span>
+    </button>
+
     <div id="risultato"></div>
-  </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Tariffe Poste Italiane — Aggiornate ad Aprile 2025 · Non ufficiale</p>
+  </footer>
 
   <script src="./spedizioni.js"></script>
 </body>
