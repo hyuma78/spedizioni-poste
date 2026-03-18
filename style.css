@@ -393,6 +393,81 @@ select:focus { outline: none; border-color: var(--red); }
   line-height: 1.7;
 }
 
+.zona-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.zona-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color .15s, background .15s, transform .1s;
+  width: 100%;
+}
+
+.zona-chip:hover {
+  border-color: var(--red);
+  background: var(--red-light);
+  transform: translateX(3px);
+}
+
+.zona-chip-nazione {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.zona-chip-nazione mark {
+  background: #fde68a;
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.zona-chip-zona {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-light);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+
+.zona-chip:hover .zona-chip-zona {
+  background: var(--red-mid);
+  border-color: var(--red);
+  color: var(--red-dark);
+}
+
+.zona-confermata {
+  background: #eafaf3;
+  border: 1.5px solid #a7e7cc;
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-size: 13.5px;
+  color: var(--green);
+  animation: fadeSlideIn .25s ease;
+}
+
+.zona-nessun-risultato {
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
 
 /* ─── PESO SECTION ─── */
 .step-peso { /* same as .step */ }

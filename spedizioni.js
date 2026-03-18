@@ -104,7 +104,7 @@ const tariffe = {
     { fascia_peso: "10-20 Kg",  standard: 18.30, ingombrante: 23.30 }
   ],
   pieghi_libri: [
-    { fascia_peso: "fino 2 Kg", non_tracciabile: 1.45, tracciabile: 4.80, tracciabile_avviso: 5.70 },
+    { fascia_peso: "fino 2 Kg", non_tracciabile: 1.35, tracciabile: 4.70, tracciabile_avviso: 5.70 },
     { fascia_peso: "fino 5 Kg", non_tracciabile: 3.95, tracciabile: 7.30, tracciabile_avviso: 8.30 }
   ],
   raccomandata: [
@@ -170,12 +170,12 @@ const tariffe = {
       { fascia_peso: "fino 1Kg",  prezzo: 25.80 },
       { fascia_peso: "fino 3Kg",  prezzo: 31.20 },
       { fascia_peso: "fino 5Kg",  prezzo: 34.40 },
-      { fascia_peso: "fino 10Kg", prezzo: 45.15 },
+      { fascia_peso: "fino 10Kg", prezzo: 45.20 },
       { fascia_peso: "fino 15Kg", prezzo: 50.55 },
       { fascia_peso: "fino 20Kg", prezzo: 61.30 }
     ],
     z2: [
-      { fascia_peso: "fino 1Kg",  prezzo: 27.95 },
+      { fascia_peso: "fino 1Kg",  prezzo: 28.00 },
       { fascia_peso: "fino 3Kg",  prezzo: 34.40 },
       { fascia_peso: "fino 5Kg",  prezzo: 39.80 },
       { fascia_peso: "fino 10Kg", prezzo: 55.90 },
@@ -185,8 +185,8 @@ const tariffe = {
     z3: [
       { fascia_peso: "fino 1Kg",  prezzo: 30.10 },
       { fascia_peso: "fino 3Kg",  prezzo: 36.55 },
-      { fascia_peso: "fino 5Kg",  prezzo: 45.15 },
-      { fascia_peso: "fino 10Kg", prezzo: 58.05 },
+      { fascia_peso: "fino 5Kg",  prezzo: 45.20 },
+      { fascia_peso: "fino 10Kg", prezzo: 58.10 },
       { fascia_peso: "fino 15Kg", prezzo: 73.10 },
       { fascia_peso: "fino 20Kg", prezzo: 89.25 }
     ],
@@ -194,20 +194,20 @@ const tariffe = {
       { fascia_peso: "fino 1Kg",  prezzo: 32.25 },
       { fascia_peso: "fino 3Kg",  prezzo: 38.70 },
       { fascia_peso: "fino 5Kg",  prezzo: 48.40 },
-      { fascia_peso: "fino 10Kg", prezzo: 64.50 },
+      { fascia_peso: "fino 10Kg", prezzo: 64.55 },
       { fascia_peso: "fino 15Kg", prezzo: 80.65 },
-      { fascia_peso: "fino 20Kg", prezzo: 96.80 }
+      { fascia_peso: "fino 20Kg", prezzo: 96.75 }
     ],
     z5: [
       { fascia_peso: "fino 1Kg",  prezzo: 36.55 },
-      { fascia_peso: "fino 3Kg",  prezzo: 45.15 },
+      { fascia_peso: "fino 3Kg",  prezzo: 45.20 },
       { fascia_peso: "fino 5Kg",  prezzo: 54.85 },
       { fascia_peso: "fino 10Kg", prezzo: 76.35 },
-      { fascia_peso: "fino 15Kg", prezzo: 109.70 },
-      { fascia_peso: "fino 20Kg", prezzo: 132.25 }
+      { fascia_peso: "fino 15Kg", prezzo: 109.65 },
+      { fascia_peso: "fino 20Kg", prezzo: 132.30 }
     ],
     z6: [
-      { fascia_peso: "fino 1Kg",  prezzo: 45.15 },
+      { fascia_peso: "fino 1Kg",  prezzo: 45.20 },
       { fascia_peso: "fino 3Kg",  prezzo: 50.55 },
       { fascia_peso: "fino 5Kg",  prezzo: 60.20 },
       { fascia_peso: "fino 10Kg", prezzo: 97.85 },
@@ -217,14 +217,14 @@ const tariffe = {
     z7: [
       { fascia_peso: "fino 1Kg",  prezzo: 30.10 },
       { fascia_peso: "fino 3Kg",  prezzo: 36.55 },
-      { fascia_peso: "fino 5Kg",  prezzo: 45.15 },
-      { fascia_peso: "fino 10Kg", prezzo: 59.15 },
+      { fascia_peso: "fino 5Kg",  prezzo: 45.20 },
+      { fascia_peso: "fino 10Kg", prezzo: 59.10 },
       { fascia_peso: "fino 15Kg", prezzo: 75.30 },
       { fascia_peso: "fino 20Kg", prezzo: 93.55 }
     ],
     z8: [
       { fascia_peso: "fino 1Kg",  prezzo: 25.80 },
-      { fascia_peso: "fino 3Kg",  prezzo: 29.05 },
+      { fascia_peso: "fino 3Kg",  prezzo: 29.00 },
       { fascia_peso: "fino 5Kg",  prezzo: 34.40 },
       { fascia_peso: "fino 10Kg", prezzo: 49.45 },
       { fascia_peso: "fino 15Kg", prezzo: 53.75 },
@@ -232,8 +232,8 @@ const tariffe = {
     ],
     z3bis: [
       { fascia_peso: "fino 1Kg",  prezzo: 32.80 },
-      { fascia_peso: "fino 3Kg",  prezzo: 40.35 },
-      { fascia_peso: "fino 5Kg",  prezzo: 64.00 },
+      { fascia_peso: "fino 3Kg",  prezzo: 40.30 },
+      { fascia_peso: "fino 5Kg",  prezzo: 63.95 },
       { fascia_peso: "fino 10Kg", prezzo: 84.40 },
       { fascia_peso: "fino 15Kg", prezzo: 109.15 },
       { fascia_peso: "fino 20Kg", prezzo: 133.90 }
@@ -241,25 +241,25 @@ const tariffe = {
     z4bis: [
       { fascia_peso: "fino 1Kg",  prezzo: 34.40 },
       { fascia_peso: "fino 3Kg",  prezzo: 44.10 },
-      { fascia_peso: "fino 5Kg",  prezzo: 67.20 },
-      { fascia_peso: "fino 10Kg", prezzo: 93.00 },
-      { fascia_peso: "fino 15Kg", prezzo: 118.85 },
-      { fascia_peso: "fino 20Kg", prezzo: 144.65 }
+      { fascia_peso: "fino 5Kg",  prezzo: 67.25 },
+      { fascia_peso: "fino 10Kg", prezzo: 93.05 },
+      { fascia_peso: "fino 15Kg", prezzo: 118.80 },
+      { fascia_peso: "fino 20Kg", prezzo: 144.60 }
     ],
     z4tris: [
       { fascia_peso: "fino 1Kg",  prezzo: 32.80 },
-      { fascia_peso: "fino 3Kg",  prezzo: 40.35 },
+      { fascia_peso: "fino 3Kg",  prezzo: 40.30 },
       { fascia_peso: "fino 5Kg",  prezzo: 52.15 },
-      { fascia_peso: "fino 10Kg", prezzo: 70.95 },
-      { fascia_peso: "fino 15Kg", prezzo: 90.35 },
+      { fascia_peso: "fino 10Kg", prezzo: 71.00 },
+      { fascia_peso: "fino 15Kg", prezzo: 90.30 },
       { fascia_peso: "fino 20Kg", prezzo: 111.85 }
     ],
     z4quater: [
       { fascia_peso: "fino 1Kg",  prezzo: 32.80 },
-      { fascia_peso: "fino 3Kg",  prezzo: 40.35 },
-      { fascia_peso: "fino 5Kg",  prezzo: 51.10 },
+      { fascia_peso: "fino 3Kg",  prezzo: 40.30 },
+      { fascia_peso: "fino 5Kg",  prezzo: 51.05 },
       { fascia_peso: "fino 10Kg", prezzo: 75.30 },
-      { fascia_peso: "fino 15Kg", prezzo: 96.80 },
+      { fascia_peso: "fino 15Kg", prezzo: 96.75 },
       { fascia_peso: "fino 20Kg", prezzo: 120.45 }
     ]
   }
@@ -412,24 +412,57 @@ function cercaZonaPerNazione() {
 
   if (!input) { risultato.innerHTML = ''; return; }
 
-  const risultati = [];
+  const trovati = [];
   const zone = mappaturaNazioni.ordinario_internazionale;
 
   for (const [codiceZona, zona] of Object.entries(zone)) {
     if (!Array.isArray(zona.nazioni)) continue;
     for (const nazione of zona.nazioni) {
-      const nome = nazione.toLowerCase();
-      if (nome === input) {
-        risultati.push(`✅ <strong>${nazione}</strong> → <em>${zona.nome}</em>`);
-      } else if (nome.includes(input)) {
-        risultati.push(`🌍 <strong>${nazione}</strong> → <em>${zona.nome}</em>`);
+      if (nazione.toLowerCase().includes(input)) {
+        trovati.push({ nazione, zona, codiceZona });
       }
     }
   }
 
-  risultato.innerHTML = risultati.length > 0
-    ? risultati.join('<br>')
-    : `⚠️ Nessun risultato per "<strong>${input}</strong>"`;
+  if (trovati.length === 0) {
+    risultato.innerHTML = `<span class="zona-nessun-risultato">⚠️ Nessun risultato per "<strong>${input}</strong>"</span>`;
+    return;
+  }
+
+  const chipsHTML = trovati.map(({ nazione, zona, codiceZona }) => {
+    // Evidenzia la parte cercata nel nome nazione
+    const regex = new RegExp(`(${input})`, 'gi');
+    const nomeEvidenziato = nazione.replace(regex, '<mark>$1</mark>');
+    const valoreSelect = 'estero' + codiceZona.replace('z', '');
+    return `
+      <button type="button" class="zona-chip" data-zona="${valoreSelect}">
+        <span class="zona-chip-nazione">${nomeEvidenziato}</span>
+        <span class="zona-chip-zona">${zona.nome}</span>
+      </button>`;
+  }).join('');
+
+  risultato.innerHTML = `<div class="zona-chips">${chipsHTML}</div>`;
+
+  // Listener su ogni chip
+  risultato.querySelectorAll('.zona-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const valoreZona = chip.dataset.zona;
+      const nomeNazione = chip.querySelector('.zona-chip-nazione').textContent;
+      const nomeZona    = chip.querySelector('.zona-chip-zona').textContent;
+
+      // Seleziona la zona nel select
+      const selectDest = document.getElementById('destinazione');
+      selectDest.value = valoreZona;
+      selectDest.dispatchEvent(new Event('change'));
+
+      // Svuota l'input e mostra conferma
+      document.getElementById('ricercaNazione').value = '';
+      risultato.innerHTML = `
+        <div class="zona-confermata">
+          ✅ <strong>${nomeNazione}</strong> — zona impostata su <strong>${nomeZona}</strong>
+        </div>`;
+    });
+  });
 }
 
 function mostraErrore(msg) {
