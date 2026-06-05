@@ -4,7 +4,7 @@ Un progetto web leggero (HTML + JavaScript) che permette agli utenti di stimare 
 spedizione in base alla destinazione e al peso del pacco.
 Ideale per e-commerce, privati o piccole attività.
 
- **** Le tariffe sono aggiornate a GENNAIO 2026. ****
+ **** Le tariffe sono aggiornate a Maggio 2026. Poste Italiane ha rimosso definitivamente Posta 1 e Posta Priority Internazionale ****
 
 ## Funzionalità principali
 
