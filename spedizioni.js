@@ -233,7 +233,7 @@ function caricaZoneEstero() {
   }
 
   mostraNazioniZona();
-  document.getElementById('ricercaNazioneWrapper').classList.toggle('hidden', false);
+  document.getElementById('ricercaNazioneWrapper').classList.toggle('hidden', true);
 }
 
 function mostraNazioniZona() {

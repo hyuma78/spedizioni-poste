@@ -824,3 +824,43 @@ select:focus { outline: none; border-color: var(--red); }
   border-color: #ffeeba;
   font-weight: bold;
 }
+
+/* Fix per l'elenco delle nazioni esploso nel layout */
+.elenco-nazioni {
+  display: flex;
+  flex-wrap: wrap; /* Forza i tag ad andare a capo */
+  gap: 8px;        /* Spazio uniforme tra i tag */
+  margin: 15px 0;
+  max-height: 200px;
+  overflow-y: auto; /* Aggiunge uno scroll se sono troppi */
+  padding: 5px;
+}
+
+.elenco-nazioni.collapsed {
+  display: none !important; /* Nasconde l'elenco quando è chiuso */
+}
+
+.nazione-tag {
+  display: inline-block;
+  background: #f1f3f5;
+  color: #495057;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+/* Fix per il pulsante mostra/nascondi */
+.nazioni-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: #0066cc;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 0;
+  margin-bottom: 15px;
+  text-decoration: underline;
+}
