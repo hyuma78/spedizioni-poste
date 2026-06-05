@@ -92,11 +92,6 @@ const mappaturaNazioni = {
 };
 
 const tariffe = {
-  posta1: [
-    { fascia_peso: "fino 100g", standard: 3.00, ingombrante: 4.30 },
-    { fascia_peso: "100g-500g", standard: 5.90, ingombrante: 7.00 },
-    { fascia_peso: "500g-2kg",  standard: 7.50, ingombrante: 8.60 }
-  ],
   pacco_ordinario: [
     { fascia_peso: "0-3 Kg",    standard: 10.30, ingombrante: 15.30 },
     { fascia_peso: "3-5 Kg",    standard: 12.20, ingombrante: 17.20 },
@@ -126,26 +121,6 @@ const tariffe = {
     { fascia_peso: "30-50 Kg",  netto: 17.12, lordo: 20.89 },
     { fascia_peso: "50-100 Kg", netto: 32.10, lordo: 39.16 }
   ],
-  priority_internazionale: {
-    z1: [
-      { fascia_peso: "fino 50g",   prezzo: 3.75 },
-      { fascia_peso: "50-100g",    prezzo: 4.65 },
-      { fascia_peso: "100-250g",   prezzo: 7.85 },
-      { fascia_peso: "250-350g",   prezzo: 9.15 }
-    ],
-    z2: [
-      { fascia_peso: "fino 50g",   prezzo: 4.85 },
-      { fascia_peso: "50-100g",    prezzo: 5.55 },
-      { fascia_peso: "100-250g",   prezzo: 11.10 },
-      { fascia_peso: "250-350g",   prezzo: 12.40 }
-    ],
-    z3: [
-      { fascia_peso: "fino 50g",   prezzo: 5.95 },
-      { fascia_peso: "50-100g",    prezzo: 7.65 },
-      { fascia_peso: "100-250g",   prezzo: 13.10 },
-      { fascia_peso: "250-350g",   prezzo: 16.10 }
-    ]
-  },
   raccomandata_internazionale: {
     z1: [
       { fascia_peso: "fino 20g",   prezzo: 7.65 },
@@ -278,11 +253,9 @@ const tariffe = {
 // ─── DOM READY ───
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Default stato
   document.getElementById('sezioneEstero').classList.add('hidden');
   document.getElementById('contenutoWrapper').classList.add('hidden');
 
-  // Tile destinazione
   document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#tipoDestinazioneWrapper .tile').forEach(b => b.classList.remove('selected'));
@@ -292,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Tile contenuto
   document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(b => b.classList.remove('selected'));
@@ -301,7 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Toggle ingombrante
   document.querySelectorAll('.toggle-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
@@ -310,12 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Tipo spedizione estero
   document.getElementById('tipoSpedizioneEstero').addEventListener('change', caricaZoneEstero);
 
-  // Destinazione change
   document.getElementById('destinazione').addEventListener('change', () => {
-    // Reset lista collassata quando cambia zona
     const elencoDiv = document.getElementById('elencoNazioni');
     const toggle    = document.getElementById('nazioniToggle');
     elencoDiv.classList.add('collapsed');
@@ -323,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mostraNazioniZona();
   });
 
-  // Toggle collassabile nazioni
   document.getElementById('nazioniToggle').addEventListener('click', () => {
     const elencoDiv = document.getElementById('elencoNazioni');
     const toggle    = document.getElementById('nazioniToggle');
@@ -332,10 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.classList.toggle('open', !isOpen);
   });
 
-  // Ricerca nazione
   document.getElementById('ricercaNazione').addEventListener('input', cercaZonaPerNazione);
-
-  // Calcola
   document.getElementById('calcola').addEventListener('click', calcolaSpedizione);
 });
 
@@ -364,18 +328,13 @@ function aggiornaDestinazione(tipo) {
 }
 
 function caricaZoneEstero() {
-  const tipoSpedizione    = document.getElementById('tipoSpedizioneEstero').value;
+  const tipoSpedizione     = document.getElementById('tipoSpedizioneEstero').value;
   const selectDestinazione = document.getElementById('destinazione');
 
   document.getElementById('infoNazioni').classList.add('hidden');
   document.getElementById('elencoNazioni').innerHTML = '';
 
   const zone = {
-    priority: {
-      'estero1': 'Europa (Zona 1)',
-      'estero2': 'Asia, Americhe, Africa (Zona 2)',
-      'estero3': 'Oceania (Zona 3)'
-    },
     raccomandata: {
       'estero1': 'Europa (Zona 1)',
       'estero2': 'Asia, Americhe, Africa (Zona 2)',
@@ -410,7 +369,7 @@ function mostraNazioniZona() {
   const nazioni = mappaturaNazioni.ordinario_internazionale[zonaSelezionata]?.nazioni;
   if (nazioni?.length > 0) {
     elencoDiv.innerHTML = nazioni.join(' · ');
-    elencoDiv.classList.add('collapsed');   // sempre chiusa al cambio zona
+    elencoDiv.classList.add('collapsed');
     toggle && toggle.classList.remove('open');
     infoDiv.classList.remove('hidden');
   }
@@ -422,7 +381,6 @@ function cercaZonaPerNazione() {
 
   if (!input) { risultato.innerHTML = ''; return; }
 
-  // Mappa esplicita codiceZona → valore select (evita bug con replace)
   const zonaToSelect = {
     z1: 'estero1', z2: 'estero2', z3: 'estero3', z3bis: 'estero3bis',
     z4: 'estero4', z4bis: 'estero4bis', z4tris: 'estero4tris', z4quater: 'estero4quater',
@@ -446,7 +404,6 @@ function cercaZonaPerNazione() {
     return;
   }
 
-  // Evidenzia la parte cercata
   const regex = new RegExp(`(${input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
 
   const chipsHTML = trovati.map(({ nazione, zonaNome, valoreSelect }) => `
@@ -459,12 +416,11 @@ function cercaZonaPerNazione() {
   risultato.innerHTML = `<div class="zona-chips">${chipsHTML}</div>`;
 }
 
-// Delegazione eventi sul contenitore risultato — non viene persa al cambio innerHTML
 document.addEventListener('click', e => {
   const chip = e.target.closest('.zona-chip');
   if (!chip) return;
 
-  const valoreZona = chip.dataset.zona;
+  const valoreZona  = chip.dataset.zona;
   const nomeNazione = chip.dataset.nome;
   const nomeZona    = chip.dataset.zonaNome;
 
@@ -521,7 +477,6 @@ function calcolaSpedizione() {
     return;
   }
 
-  // Miglior prezzo tra quelli affidabili
   const affidabili = risultati.filter(r => {
     const n = r.nome.toLowerCase();
     return (n.includes('pieghi') && !n.includes('non tracciabile')) ||
@@ -536,7 +491,6 @@ function calcolaSpedizione() {
 
   let html = '';
 
-  // Riepilogo
   html += `
     <div class="riepilogo">
       <div class="riepilogo-title">Riepilogo</div>
@@ -546,7 +500,6 @@ function calcolaSpedizione() {
     </div>
   `;
 
-  // Card consigliata
   html += `
     <div class="card-consigliata">
       <div class="card-consigliata-label">⭐ Scelta consigliata</div>
@@ -555,15 +508,13 @@ function calcolaSpedizione() {
     </div>
   `;
 
-  // Lista tutti i servizi
   html += `<div class="risultati-lista-title">Tutte le opzioni disponibili</div>`;
   html += `<div class="servizi-grid">`;
 
   const prezzoMinimo = Math.min(...risultati.map(r => r.prezzo));
 
   risultati.forEach(r => {
-    const isMigliore = r === migliore;
-    html += creaServizio(r.nome, r.prezzo, isMigliore, prezzoMinimo);
+    html += creaServizio(r.nome, r.prezzo, r === migliore, prezzoMinimo);
   });
 
   html += `</div>`;
@@ -573,18 +524,14 @@ function calcolaSpedizione() {
 }
 
 function parseRange(fascia) {
-  // Normalizza: minuscolo, rimuovi spazi
   const s = fascia.toLowerCase().replace(/\s/g, '');
 
-  // Converte una singola stringa numerica con unità in grammi
   function toGrams(val) {
     if (val.includes('kg')) return parseFloat(val) * 1000;
     if (val.includes('g'))  return parseFloat(val);
-    // Nessuna unità: se la fascia originale contiene 'kg', il numero è in kg
     return fascia.toLowerCase().includes('kg') ? parseFloat(val) * 1000 : parseFloat(val);
   }
 
-  // Rimuovi "fino"
   const clean = s.replace('fino', '');
 
   if (clean.includes('-')) {
@@ -600,20 +547,14 @@ function calcolaTariffeItalia(peso) {
   const opzioni = [];
   const crea = (nome, prezzo) => opzioni.push({ nome, prezzo });
 
-  const posta1 = tariffe.posta1.find(m => {
-    const [min, max] = parseRange(m.fascia_peso);
-    return peso >= min && peso <= max;
-  });
-  if (posta1) crea('📮 Posta 1', ingombrante ? posta1.ingombrante : posta1.standard);
-
   if (tipoContenutoSelezionato === 'libro') {
     const pieghi = tariffe.pieghi_libri.find(m => {
       const [min, max] = parseRange(m.fascia_peso);
       return peso >= min && peso <= max;
     });
     if (pieghi) {
-      crea('📚 Pieghi di Libri – Non Tracciabile',   pieghi.non_tracciabile);
-      crea('📚 Pieghi di Libri – Tracciabile',        pieghi.tracciabile);
+      crea('📚 Pieghi di Libri – Non Tracciabile',     pieghi.non_tracciabile);
+      crea('📚 Pieghi di Libri – Tracciabile',          pieghi.tracciabile);
       crea('📚 Pieghi di Libri – Tracciabile + Avviso', pieghi.tracciabile_avviso);
     }
   }
@@ -659,7 +600,6 @@ function calcolaTariffeEstero(peso) {
   if (!match) return [];
 
   const nome = {
-    priority:     '✈️ Priority Internazionale',
     raccomandata: '📨 Raccomandata Internazionale',
     paccoInt:     '🌍 Pacco Ordinario Internazionale'
   }[tipoSpedizione];
@@ -670,12 +610,11 @@ function calcolaTariffeEstero(peso) {
 function creaServizio(nome, prezzo, isMigliore = false, prezzoMinimo = null) {
   const lower = nome.toLowerCase();
 
-  const isPieghiNT  = lower.includes('pieghi') && lower.includes('non tracciabile');
-  const isPieghiT   = lower.includes('pieghi') && !lower.includes('non tracciabile');
-  const isRacc      = lower.includes('raccomandata');
-  const isPacco     = lower.includes('pacco ordinario');
-  const isPosta1    = lower.includes('posta 1');
-  const isSpediamo  = lower.includes('spediamo');
+  const isPieghiNT = lower.includes('pieghi') && lower.includes('non tracciabile');
+  const isPieghiT  = lower.includes('pieghi') && !lower.includes('non tracciabile');
+  const isRacc     = lower.includes('raccomandata');
+  const isPacco    = lower.includes('pacco ordinario');
+  const isSpediamo = lower.includes('spediamo');
 
   const isEconomica = prezzoMinimo !== null && prezzo === prezzoMinimo;
 
