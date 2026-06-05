@@ -806,3 +806,21 @@ select:focus { outline: none; border-color: var(--red); }
   .card-consigliata-prezzo { font-size: 28px; }
   .servizi-grid { grid-template-columns: 1fr; }
 }
+\n\n/* Aggiunte e personalizzazioni per gestione errori blocchi doganali 2026 e tag evidenziati */
+.errore {
+  background: #fdf2f2;
+  color: #de350b;
+  border-left: 4px solid #de350b;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.nazione-tag.highlight {
+  background: #fff3cd;
+  color: #856404;
+  border-color: #ffeeba;
+  font-weight: bold;
+}
