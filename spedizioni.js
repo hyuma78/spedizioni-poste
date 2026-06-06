@@ -321,8 +321,8 @@ function aggiornaDestinazione(tipo) {
     contenutoDiv.classList.remove('hidden');
   } else {
     sezioneEstero.classList.remove('hidden');
-    contenutoDiv.classList.add('hidden');
-    tipoContenutoSelezionato = 'generico';
+    tipoContenutoSelezionato = null;
+    document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(b => b.classList.remove('selected'));
     caricaZoneEstero();
   }
 }
@@ -330,12 +330,18 @@ function aggiornaDestinazione(tipo) {
 function caricaZoneEstero() {
   const tipoSpedizione     = document.getElementById('tipoSpedizioneEstero').value;
   const selectDestinazione = document.getElementById('destinazione');
+  const contenutoDiv       = document.getElementById('contenutoWrapper');
 
   document.getElementById('infoNazioni').classList.add('hidden');
   document.getElementById('elencoNazioni').innerHTML = '';
 
   const zone = {
     raccomandata: {
+      'estero1': 'Europa (Zona 1)',
+      'estero2': 'Asia, Americhe, Africa (Zona 2)',
+      'estero3': 'Oceania (Zona 3)'
+    },
+    postaMail: {
       'estero1': 'Europa (Zona 1)',
       'estero2': 'Asia, Americhe, Africa (Zona 2)',
       'estero3': 'Oceania (Zona 3)'
@@ -352,6 +358,16 @@ function caricaZoneEstero() {
   Object.entries(zone).forEach(([valore, testo]) => {
     selectDestinazione.add(new Option(testo, valore));
   });
+
+  // Raccomandata richiede selezione contenuto (solo documenti consentiti)
+  if (tipoSpedizione === 'raccomandata') {
+    contenutoDiv.classList.remove('hidden');
+    tipoContenutoSelezionato = null;
+    document.querySelectorAll('#tipoContenutoWrapper .tile').forEach(b => b.classList.remove('selected'));
+  } else {
+    contenutoDiv.classList.add('hidden');
+    tipoContenutoSelezionato = 'generico';
+  }
 
   mostraNazioniZona();
   document.getElementById('ricercaNazioneWrapper').classList.toggle('hidden', tipoSpedizione !== 'paccoInt');
@@ -461,8 +477,34 @@ function calcolaSpedizione() {
 
   if (!peso || peso < 1) { mostraErrore('❌ Inserisci un peso valido in grammi.'); return; }
   if (!tipoDestinazioneSelezionato) { mostraErrore('❌ Seleziona una destinazione (Italia o Estero).'); return; }
-  if (tipoDestinazioneSelezionato === 'italia' && !tipoContenutoSelezionato) {
+
+  const tipoSpedizioneEstero = document.getElementById('tipoSpedizioneEstero').value;
+
+  // Contenuto richiesto per Italia e Raccomandata Internazionale
+  const needsContenuto = tipoDestinazioneSelezionato === 'italia' ||
+                         (tipoDestinazioneSelezionato === 'estero' && tipoSpedizioneEstero === 'raccomandata');
+  if (needsContenuto && !tipoContenutoSelezionato) {
     mostraErrore('❌ Seleziona cosa stai spedendo (Libri o Altro).');
+    return;
+  }
+
+  // Blocco normativa 2026: Raccomandata Internazionale solo per documenti
+  if (tipoDestinazioneSelezionato === 'estero' && tipoSpedizioneEstero === 'raccomandata' && tipoContenutoSelezionato === 'generico') {
+    mostraErrore('🚫 Dal 1° Gennaio 2026 la Raccomandata Internazionale è disponibile solo per documenti. Per spedire merci usa il Pacco Ordinario Internazionale.');
+    return;
+  }
+
+  // PostaMail: tariffe in aggiornamento
+  if (tipoDestinazioneSelezionato === 'estero' && tipoSpedizioneEstero === 'postaMail') {
+    risultatoEl.innerHTML = `
+      <div class="card-consigliata" style="border-color:#f39c12; background:linear-gradient(135deg,#fffdf0,#fff);">
+        <div class="card-consigliata-label" style="color:#e67e22;">⏳ Tariffe in aggiornamento</div>
+        <div class="card-consigliata-nome">✉️ PostaMail Internazionale</div>
+        <p style="font-size:13px;color:var(--ink-mid);margin-top:10px;line-height:1.5;">
+          Le tariffe PostaMail Internazionale sono in fase di aggiornamento.<br>
+          Consulta il sito ufficiale <a href="https://www.poste.it" target="_blank" style="color:var(--red);">Poste Italiane</a> per i prezzi aggiornati.
+        </p>
+      </div>`;
     return;
   }
 
