@@ -121,6 +121,26 @@ const tariffe = {
     { fascia_peso: "30-50 Kg",  netto: 17.12, lordo: 20.89 },
     { fascia_peso: "50-100 Kg", netto: 32.10, lordo: 39.16 }
   ],
+  priority_internazionale: {
+    z1: [
+      { fascia_peso: "fino 50g",   prezzo: 3.75 },
+      { fascia_peso: "50-100g",    prezzo: 4.65 },
+      { fascia_peso: "100-250g",   prezzo: 7.85 },
+      { fascia_peso: "250-350g",   prezzo: 9.15 }
+    ],
+    z2: [
+      { fascia_peso: "fino 50g",   prezzo: 4.85 },
+      { fascia_peso: "50-100g",    prezzo: 5.55 },
+      { fascia_peso: "100-250g",   prezzo: 11.10 },
+      { fascia_peso: "250-350g",   prezzo: 12.40 }
+    ],
+    z3: [
+      { fascia_peso: "fino 50g",   prezzo: 5.95 },
+      { fascia_peso: "50-100g",    prezzo: 7.65 },
+      { fascia_peso: "100-250g",   prezzo: 13.10 },
+      { fascia_peso: "250-350g",   prezzo: 16.10 }
+    ]
+  },
   raccomandata_internazionale: {
     z1: [
       { fascia_peso: "fino 20g",   prezzo: 7.65 },
@@ -341,7 +361,7 @@ function caricaZoneEstero() {
       'estero2': 'Asia, Americhe, Africa (Zona 2)',
       'estero3': 'Oceania (Zona 3)'
     },
-    postaMail: {
+    priority: {
       'estero1': 'Europa (Zona 1)',
       'estero2': 'Asia, Americhe, Africa (Zona 2)',
       'estero3': 'Oceania (Zona 3)'
@@ -494,20 +514,6 @@ function calcolaSpedizione() {
     return;
   }
 
-  // PostaMail: tariffe in aggiornamento
-  if (tipoDestinazioneSelezionato === 'estero' && tipoSpedizioneEstero === 'postaMail') {
-    risultatoEl.innerHTML = `
-      <div class="card-consigliata" style="border-color:#f39c12; background:linear-gradient(135deg,#fffdf0,#fff);">
-        <div class="card-consigliata-label" style="color:#e67e22;">⏳ Tariffe in aggiornamento</div>
-        <div class="card-consigliata-nome">✉️ PostaMail Internazionale</div>
-        <p style="font-size:13px;color:var(--ink-mid);margin-top:10px;line-height:1.5;">
-          Le tariffe PostaMail Internazionale sono in fase di aggiornamento.<br>
-          Consulta il sito ufficiale <a href="https://www.poste.it" target="_blank" style="color:var(--red);">Poste Italiane</a> per i prezzi aggiornati.
-        </p>
-      </div>`;
-    return;
-  }
-
   nascondiErrore();
 
   const risultati = tipoDestinazioneSelezionato === 'italia'
@@ -642,6 +648,7 @@ function calcolaTariffeEstero(peso) {
   if (!match) return [];
 
   const nome = {
+    priority:     '✈️ Priority Internazionale',
     raccomandata: '📨 Raccomandata Internazionale',
     paccoInt:     '🌍 Pacco Ordinario Internazionale'
   }[tipoSpedizione];
