@@ -4,7 +4,7 @@ Un progetto web leggero (HTML + JavaScript) che permette agli utenti di stimare 
 spedizione in base alla destinazione e al peso del pacco.
 Ideale per e-commerce, privati o piccole attività.
 
-**⚠️ Tariffe aggiornate a Gennaio 2026.**
+**⚠️ Tariffe aggiornate a Maggio 2026.**
 
 > **Note normative 2026:**
 > - Poste Italiane ha rimosso definitivamente **Posta 1**.
